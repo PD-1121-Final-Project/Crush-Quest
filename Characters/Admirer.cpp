@@ -5,8 +5,13 @@
 #include <string>
 using namespace std;
 
-Admirer::Admirer(const std::string& name, int age) : Character(name, age) {}
+Admirer::Admirer(const std::string& name, int age, personality attributes)
+    : Character(name, age, attributes) {}
 
 Admirer::~Admirer() {}
 
-void Admirer::print() { cout << "Admirer:" << name << " " << age << endl; }
+void Admirer::print() {
+    cout << "Admirer:" << name << " " << age << endl;
+    Character::print();
+    cout << endl;
+}

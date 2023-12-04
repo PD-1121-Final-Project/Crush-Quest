@@ -3,6 +3,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
+#include "personality.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -12,11 +13,13 @@ class Character {
     // Attributes common to all Characters
     string name;
     int age;
+    personality attributes;
 
   public:
     // // Constructors and destructors if needed
-    Character(const string& name, int age);
+    Character(const string& name, int age, personality attributes);
     ~Character();
+    void print();
 
     // // Virtual methods that can be overridden by child classes
     // virtual void displayAffection() = 0;

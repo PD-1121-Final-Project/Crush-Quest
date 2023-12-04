@@ -5,11 +5,12 @@
 #define PERSONALITY_H
 
 struct personality {
-    int wealth;
-    int iq;
-    int physical;
-    int talent;
-    int appearance;
+    double wealth;
+    double iq;
+    double physical;
+    double talent;
+    double appearance;
+    double luck;
 
     void print();
     // void operator*(personality& p)
