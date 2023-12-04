@@ -11,15 +11,11 @@ using namespace std;
 class Admirer : public Character {
   private:
     // Attributes specific to Admirer
-    // ...
+    // 道具的array
 
   public:
-    // // Constructor and destructor
-    Admirer(const std::string& name, int age);
+    Admirer(const std::string& name, int age, personality attributes);
     ~Admirer();
-
-    // // Overridden method from Character
-    // void displayAffection() override;
     void print();
 };
 
