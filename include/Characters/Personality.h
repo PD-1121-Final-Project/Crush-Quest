@@ -1,10 +1,8 @@
 ﻿
-//Personality.h
+// Personality.h
 
 #ifndef PERSONALITY_H
 #define PERSONALITY_H
-
-using namespace std;
 
 struct personality {
     int wealth;
@@ -14,8 +12,7 @@ struct personality {
     int appearance;
 
     void print();
-    // void operator*(personality& p) 
+    // void operator*(personality& p)
 };
 
 #endif // PERSONALITY_H
-
