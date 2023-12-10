@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-    cout << "Hello World!" << endl;
+    cout << "Hello World!!!" << endl;
 
     // appearance, iq, luck, physical, talent, wealth
     struct personality playerAttr = {10, 20, 30, 40, 50, 60};
