@@ -54,12 +54,12 @@ int main() {
     double actionCoef = 0;
     scene1.act(player, updateScore, actionCoef);
 
-    player.update(updateScore); // 依照結果升級
-    crush1.update(player.getAttributes(), actionCoef);
+    // player.update(updateScore); // 依照結果升級
+    // crush1.update(player.getAttributes(), actionCoef);
 
-    // 印出結果
-    player.print();
-    crush1.print();
+    // // 印出結果
+    // player.print();
+    // crush1.print();
 
     // 關閉檔案
     scene_json.close();

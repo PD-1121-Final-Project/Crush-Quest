@@ -1,97 +1,102 @@
 [
     {
         "name": "圖書館",
-        "situationStatement": "你和暗戀對象來到圖書館，這裡充滿了古舊書籍的香氣，高高的書架排列得密密麻麻，伴隨著微弱的金色燈光",
-        "dialogs": [
-            "你：嘿，你最近在讀什麼書?",
-            "暗戀對象：我最近在讀《魔戒》，這是一本很有趣的書，你有興趣嗎?",
-            "暗戀對象：你有什麼書推薦給我嗎?"
-        ],
-        "actions": [
+        "introduction": "你和暗戀對象來到圖書館，這裡充滿了古舊書籍的香氣，高高的書架排列得密密麻麻，伴隨著微弱的金色燈光。",
+        "events": [
             {
-                "name": "推薦《魔戒》",
-                "score": 1
-            },
-            {
-                "name": "推薦《哈利波特》",
-                "score": 2
-            },
-            {
-                "name": "推薦《紅樓夢》",
-                "score": 3
+                "dialogs": [
+                    "你：嘿，你最近在讀什麼書? \n 暗戀對象：我最近在讀《被討厭的勇氣》，這是一本很有趣的書，你有興趣嗎? \n 暗戀對象：你有什麼好看的書可以推薦給我嗎?"
+                ],
+                "actions": [
+                    {
+                        "description": "推薦黃山料《那女孩對我說》",
+                        "actionCoef": 1,
+                        "response": "暗戀對象：謝謝你，不過這好像不是我喜歡的類型。"
+                    },
+                    {
+                        "description": "有啊，這是我的臉書（拿出手機）",
+                        "actionCoef": 2,
+                        "response": "暗戀對象：（猶豫了一下）哈哈那我加你囉！"
+                    },
+                    {
+                        "description": "我最近也在看《被討厭的勇氣》，可以跟你一起討論嗎？",
+                        "actionCoef": 3,
+                        "response": "暗戀對象： 好啊！我正好想找人聊聊我的心得"
+                    }
+                ]
             }
         ]
     },
     {
         "name": "醉月湖散步",
-        "situationStatement": "你在醉月湖邊，你要做什麼呢?"
+        "introduction": "你在醉月湖邊，你要做什麼呢?"
     },
     {
         "name": "操場",
-        "situationStatement": "你在操場上，你要做什麼呢?"
+        "introduction": "你在操場上，你要做什麼呢?"
     },
     {
         "name": "吃午餐",
-        "situationStatement": "你在吃午餐，你要做什麼呢?"
+        "introduction": "你在吃午餐，你要做什麼呢?"
     },
     {
         "name": "吃晚餐",
-        "situationStatement": "你在吃晚餐，你要做什麼呢?"
+        "introduction": "你在吃晚餐，你要做什麼呢?"
     },
     {
         "name": "吃宵夜",
-        "situationStatement": "你在吃宵夜，你要做什麼呢?"
+        "introduction": "你在吃宵夜，你要做什麼呢?"
     },
     {
         "name": "聖誕節",
-        "situationStatement": "你在聖誕節，你要做什麼呢?"
+        "introduction": "你在聖誕節，你要做什麼呢?"
     },
     {
         "name": "跨年",
-        "situationStatement": "你在跨年，你要做什麼呢?"
+        "introduction": "你在跨年，你要做什麼呢?"
     },
     {
         "name": "情人節",
-        "situationStatement": "你在情人節，你要做什麼呢?"
+        "introduction": "你在情人節，你要做什麼呢?"
     },
     {
         "name": "期末考",
-        "situationStatement": "你在期末考，你要做什麼呢?"
+        "introduction": "你在期末考，你要做什麼呢?"
     },
     {
         "name": "期中考",
-        "situationStatement": "你在期中考，你要做什麼呢?"
+        "introduction": "你在期中考，你要做什麼呢?"
     },
     {
         "name": "讀書",
-        "situationStatement": "你在讀書，你要做什麼呢?"
+        "introduction": "你在讀書，你要做什麼呢?"
     },
     {
         "name": "體育課",
-        "situationStatement": "你在體育課，你要做什麼呢?"
+        "introduction": "你在體育課，你要做什麼呢?"
     },
     {
         "name": "分組報告",
-        "situationStatement": "你在分組報告，你要做什麼呢?"
+        "introduction": "你在分組報告，你要做什麼呢?"
     },
     {
         "name": "之週",
-        "situationStatement": "你在之週，你要做什麼呢?"
+        "introduction": "你在之週，你要做什麼呢?"
     },
     {
         "name": "之夜",
-        "situationStatement": "你在之夜，你要做什麼呢?"
+        "introduction": "你在之夜，你要做什麼呢?"
     },
     {
         "name": "系烤",
-        "situationStatement": "你在系烤，你要做什麼呢?"
+        "introduction": "你在系烤，你要做什麼呢?"
     },
     {
         "name": "選課",
-        "situationStatement": "你在選課，你要做什麼呢?"
+        "introduction": "你在選課，你要做什麼呢?"
     },
     {
         "name": "看電影",
-        "situationStatement": "你在看電影，你要做什麼呢?"
+        "introduction": "你在看電影，你要做什麼呢?"
     }
 ]

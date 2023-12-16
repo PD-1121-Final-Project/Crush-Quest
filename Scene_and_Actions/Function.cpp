@@ -10,44 +10,43 @@
 using namespace std;
 
 void slowPrint(string statement) {
-    istringstream iss(statement);
+    // Remove the first and last character if they are quotes
+    if (statement.front() == '"' && statement.back() == '"') {
+        statement = statement.substr(1, statement.size() - 2);
+    }
 
-    char character;
-    while (iss >> character) {
+    // Replace all occurrences of "\n" with actual newlines
+    string::size_type pos = 0;
+    while ((pos = statement.find("\\n", pos)) != string::npos) {
+        statement.replace(pos, 2, "\n");
+        pos += 1;
+    }
+
+    // Print characters one by one
+    for (char character : statement) {
         cout << character;
         this_thread::sleep_for(
-            chrono::milliseconds(50)); // Adjust the delay time as needed
+            chrono::milliseconds(1)); // Adjust delay time as needed
         flush(cout);
     }
 
     cout << "\n";
 }
-void sleep(int ms){
-    this_thread::sleep_for(chrono::milliseconds(ms));
-}
 
-void rangePrint(double x)
-{
-	if(x > 80)
-	{
-		cout << "*****";
-	}
-	else if(x > 60)
-	{
-		cout << "****";
-	}
-	else if(x > 40)
-	{
-		cout << "***";
-	}
-	else if (x > 20)
-	{
-		cout << "**";
-	}
-	else
-	{
-		cout << "*";
-	}
+void sleep(int ms) { this_thread::sleep_for(chrono::milliseconds(ms)); }
+
+void rangePrint(double x) {
+    if (x > 80) {
+        cout << "*****";
+    } else if (x > 60) {
+        cout << "****";
+    } else if (x > 40) {
+        cout << "***";
+    } else if (x > 20) {
+        cout << "**";
+    } else {
+        cout << "*";
+    }
 }
 
 #endif
