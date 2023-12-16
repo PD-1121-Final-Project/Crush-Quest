@@ -24,4 +24,28 @@ void sleep(int ms){
     this_thread::sleep_for(chrono::milliseconds(ms));
 }
 
+void rangePrint(double x)
+{
+	if(x > 80)
+	{
+		cout << "*****";
+	}
+	else if(x > 60)
+	{
+		cout << "****";
+	}
+	else if(x > 40)
+	{
+		cout << "***";
+	}
+	else if (x > 20)
+	{
+		cout << "**";
+	}
+	else
+	{
+		cout << "*";
+	}
+}
+
 #endif
