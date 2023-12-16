@@ -6,8 +6,8 @@
 #include <string>
 using namespace std;
 
-Admirer::Admirer(const std::string& name, personality attributes)
-    : Character(name, attributes) {}
+Admirer::Admirer(const std::string& name, int age, Personality attributes)
+    : Character(name, age, attributes) {}
 
 Admirer::~Admirer() {}
 
@@ -17,6 +17,6 @@ void Admirer::print() {
     cout << endl;
 }
 
-void Admirer::update(personality newAttributes) {
-    this->attributes = newAttributes;
+void Admirer::update(Personality newAttributes) {
+    this->attributes += newAttributes;
 }
