@@ -28,7 +28,7 @@ class Event {
         this->actionChoiceCnt = actionChoiceCnt;
     }
     Event(Json::Value eventObj) {
-        this->dialogs = JsonToString(eventObj["dialogs"][0]);
+        this->dialogs = JsonToString(eventObj["dialogs"]);
         this->actionChoiceCnt = eventObj["actions"].size();
         this->actionChoice = new Action*[this->actionChoiceCnt];
         for (int j = 0; j < this->actionChoiceCnt; j++) {
