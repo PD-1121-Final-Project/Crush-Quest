@@ -26,7 +26,7 @@ void slowPrint(string statement) {
     for (char character : statement) {
         cout << character;
         this_thread::sleep_for(
-            chrono::milliseconds(1)); // Adjust delay time as needed
+            chrono::milliseconds(50)); // Adjust delay time as needed
         flush(cout);
     }
 

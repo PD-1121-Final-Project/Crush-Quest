@@ -56,25 +56,24 @@ void Scene::printEvent(int eventIndex) {
 
 void Scene::act(Admirer player, Personality& updateScore, double& actionCoef) {
 
-    const int eventIndex = 0;
+    for (int i = 0; i < this->eventCnt; i++) {
+        this->printEvent(i);
 
-    this->printEvent(eventIndex);
+        // get player input
+        int actionDecision_cin;
+        cin >> actionDecision_cin;
 
-    // // get player input
-    // int actionDecision_cin;
-    // cin >> actionDecision_cin;
+        // change input index
+        actionDecision_cin -= 1;
 
-    // // change input index
-    // actionDecision_cin -= 1;
+        // print player decision
+        this->events[i]->printDecision(actionDecision_cin);
 
-    // // print player decision
-    // this->events[eventIndex].printDecision(actionDecision_cin);
-
-    // // get action object
-    // Action chosenAction =
-    //     *(this->events[eventIndex].actionChoice[actionDecision_cin]);
-
-    // // get result
-    // updateScore = this->getResult(player, chosenAction);
-    // actionCoef = chosenAction.getCoef();
+        // get action object
+        Action chosenAction =
+            *(this->events[i]->actionChoice[actionDecision_cin]);
+        // get result
+        updateScore += this->getResult(player, chosenAction);
+        actionCoef += chosenAction.getCoef();
+    }
 }
