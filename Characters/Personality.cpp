@@ -1,4 +1,4 @@
-﻿#include "../include/Characters/Personality.h"
+﻿#include "../include/Characters/personality.h"
 #include <iostream>
 using namespace std;
 
@@ -8,4 +8,5 @@ void personality::print() {
     cout << "physical: " << physical << endl;
     cout << "talent: " << talent << endl;
     cout << "appearance: " << appearance << endl;
+    cout << "luck: " << luck << endl;
 }

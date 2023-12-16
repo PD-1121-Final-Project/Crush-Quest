@@ -1,12 +1,22 @@
 #include "include/Characters/Admirer.h"
+#include "include/Characters/Crush.h"
+#include "include/Characters/personality.h"
 #include <iostream>
 using namespace std;
 
 int main() {
-    cout << "Hello World!" << endl;
+    cout << "Hello World!!!" << endl;
 
-    Admirer admirer("John", 25);
-    admirer.print();
+    // appearance, iq, luck, physical, talent, wealth
+    struct personality playerAttr = {10, 20, 30, 40, 50, 60};
+
+    Admirer player("John", 25, playerAttr);
+    player.print();
+
+    // appearance, iq, luck, physical, talent, wealth
+    struct personality crushAttr = {30, 20, 30, 20, 20, 30};
+    Crush crush1("JJJ", 22, crushAttr);
+    crush1.print();
 
     return 0;
 }
