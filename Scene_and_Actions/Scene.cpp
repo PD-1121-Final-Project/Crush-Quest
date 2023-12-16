@@ -59,9 +59,21 @@ void Scene::act(Admirer player, Personality& updateScore, double& actionCoef) {
     for (int i = 0; i < this->eventCnt; i++) {
         this->printEvent(i);
 
-        // get player input
         int actionDecision_cin;
-        cin >> actionDecision_cin;
+        // get player input
+        do {
+        if (!(cin >> actionDecision_cin)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+        } else if (actionDecision_cin < 1 || actionDecision_cin > 3) {
+            slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+        } else {
+            break;
+        }
+    } while (true);
+        
+        
 
         // change input index
         actionDecision_cin -= 1;
