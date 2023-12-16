@@ -5,13 +5,13 @@
 #include <string>
 using namespace std;
 
-Crush::Crush(const std::string& name, int age, personality attributes)
-    : Character(name, age, attributes) {}
+Crush::Crush(const std::string& name, personality attributes)
+    : Character(name, attributes) {}
 
 Crush::~Crush() {}
 
 void Crush::print() {
-    cout << "Crush:" << name << " " << age << endl;
+    cout << "Crush:" << name << " " << endl;
     Character::print();
     cout << endl;
 }

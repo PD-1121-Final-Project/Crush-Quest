@@ -12,12 +12,11 @@ class Character {
   protected:
     // Attributes common to all Characters
     string name;
-    int age;
     personality attributes;
 
   public:
     // // Constructors and destructors if needed
-    Character(const string& name, int age, personality attributes);
+    Character(const string& name, personality attributes);
     ~Character();
     void print();
 
