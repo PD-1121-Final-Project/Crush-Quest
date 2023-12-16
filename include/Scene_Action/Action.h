@@ -4,24 +4,23 @@
 #include <string>
 using namespace std;
 
-class Action
-{
-protected:
-	string name;
-	int code;
-    double coef;
-	
-public:
+class Action {
+  protected:
+    string description;
+    double actionCoef;
+    string response;
+
+  public:
     // Constructor
-    Action(int n, string s);
+    Action(string name, double actionCoef, string response);
     ~Action();
-    
+
     // Operator overloading
     void operator=(const Action& a);
 
     // Functions
-    void printName() const;
-    double getCoef() const { return coef;}
+    void printDescription() const;
+    double getCoef() const { return actionCoef; }
 };
 
 #endif

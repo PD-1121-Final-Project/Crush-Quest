@@ -7,88 +7,28 @@ using namespace std;
 #include "../include/Characters/Personality.h"
 #include "../include/Scene_Action/Function.h"
 #include "../include/Scene_Action/Scene.h"
+#include "../include/jsonToString.h"
+#include <chrono>
+#include <json/json.h>
+#include <thread>
 
-/*
-class Scene
-{
-protected:
-        string situationStatement;
-        int actionChoiceCnt;
-    Action** actionChoice;
+Scene::Scene(string name, Json::Value sceneObj) {
+    this->name = JsonToString(sceneObj["name"]);
+    this->introduction = JsonToString(sceneObj["introduction"]);
 
-    //Functions
-    void printSituation() const;
-        void printActionChoice() const;
-        void printActionDecision(int actionNum);
-        void printDecisionConsequence(int actionNum);
-
-public:
-        // Constructors
-        Scene(string statement, int actionChoiceCnt, Action** actionList);
-        ~Scene();
-
-        // Functions
-        void happen();
-};
-*/
-
-Scene::Scene(string name) {
-    this->name = name;
-    if (name == "Library") {
-        this->situationStatement = "你在圖書館裡面，你要做什麼呢?";
-        const int TOTAL_ACTION_CNT = 5;
-        Action* TALK = new Action(0, "找曖昧對象聊天");
-        Action* SCROLL_PHONE = new Action(1, "滑手機");
-        Action* WINK = new Action(2, "眨眼");
-        Action* FIGHT = new Action(3, "打架");
-        Action* STUDY = new Action(4, "讀書");
-
-        this->actionChoice = new Action*[TOTAL_ACTION_CNT];
-        actionChoice[0] = TALK;
-        actionChoice[1] = SCROLL_PHONE;
-        actionChoice[2] = WINK;
-        actionChoice[3] = FIGHT;
-        actionChoice[4] = STUDY;
-        this->actionChoiceCnt = TOTAL_ACTION_CNT;
-    }
-}
-
-Scene::Scene(string statement, int actionChoiceCnt, Action** actionList) {
-    this->situationStatement = statement;
-    this->actionChoiceCnt = actionChoiceCnt;
-
-    this->actionChoice = new Action*[this->actionChoiceCnt];
-    // Add the actions available.
-    for (int i = 0; i < this->actionChoiceCnt; i++) {
-        this->actionChoice[i] = actionList[i];
+    this->eventCnt = sceneObj["events"].size();
+    this->events = new Event*[this->eventCnt];
+    for (int i = 0; i < this->eventCnt; i++) {
+        Json::Value eventObj = sceneObj["events"][i];
+        this->events[i] = new Event(sceneObj["events"][i]);
     }
 }
 
 Scene::~Scene() {
-    for (int i = 0; i < this->actionChoiceCnt; i++) {
-        delete actionChoice[i];
-        actionChoice[i] = nullptr;
+    for (int i = 0; i < this->eventCnt; i++) {
+        delete this->events[i];
     }
-    delete[] this->actionChoice;
-    this->actionChoice = nullptr;
-}
-
-void Scene::printSituation() const { slowPrint(this->situationStatement); }
-
-void Scene::printActionChoice() {
-    cout << "你可以選擇:"
-         << "\n";
-    for (int i = 0; i < this->actionChoiceCnt; i++) {
-        cout << "(" << i + 1 << ") ";
-        this->actionChoice[i]->printName();
-        cout << "\n";
-    }
-}
-
-void Scene::printActionDecision(int actionNum) {
-    cout << "你選擇: ";
-    this->actionChoice[actionNum]->printName();
-    cout << "\n";
+    delete[] this->events;
 }
 
 Personality Scene::getResult(Admirer player, Action a) {
@@ -103,32 +43,37 @@ Personality Scene::getResult(Admirer player, Action a) {
     return currentPersonality;
 }
 
-void Scene::printDecisionConsequence(int actionNum) {
-    slowPrint("然後.......");
+void Scene::happen() {
+    slowPrint(this->introduction);
+    slowPrint("...");
 }
 
-void Scene::happen() {
-    // print situation statement
-    this->printSituation();
+void Scene::printEvent(int eventIndex) {
+    // print event
+    events[eventIndex]->printDialogs();
+    events[eventIndex]->printActionChoices();
 }
 
 void Scene::act(Admirer player, Personality& updateScore, double& actionCoef) {
-    this->printActionChoice();
 
-    // get player input
-    int actionDecision_cin;
-    cin >> actionDecision_cin;
+    for (int i = 0; i < this->eventCnt; i++) {
+        this->printEvent(i);
 
-    // change input index
-    actionDecision_cin -= 1;
+        // get player input
+        int actionDecision_cin;
+        cin >> actionDecision_cin;
 
-    // print player decision
-    this->printActionDecision(actionDecision_cin);
+        // change input index
+        actionDecision_cin -= 1;
 
-    // get action object
-    Action chosenAction = *(this->actionChoice[actionDecision_cin]);
+        // print player decision
+        this->events[i]->printDecision(actionDecision_cin);
 
-    // get result
-    updateScore = this->getResult(player, chosenAction);
-    actionCoef = chosenAction.getCoef();
+        // get action object
+        Action chosenAction =
+            *(this->events[i]->actionChoice[actionDecision_cin]);
+        // get result
+        updateScore += this->getResult(player, chosenAction);
+        actionCoef += chosenAction.getCoef();
+    }
 }
