@@ -1,8 +1,8 @@
 // #include "include/Characters/Admirer.h"
 #include "include/Characters/Crush.h"
 #include "include/Characters/Personality.h"
+// #include "include/Init/Init.h"
 #include "include/Scene_Action/Scene.h"
-#include "include/Game/Game.h"
 #include "include/jsonToString.h"
 #include <fstream>
 #include <iostream>
@@ -10,7 +10,6 @@
 using namespace std;
 
 int main() {
-
 
     std::ifstream scene_json("./Scene_and_Actions/scene.json",
                              std::ifstream::binary);
@@ -51,20 +50,16 @@ int main() {
     scene1.happen();
 
     // 印出場景的選項，並且讓玩家選擇，並且回傳結果
-    // Personality newPersonality = scene1.act(player);
     Personality updateScore;
     double actionCoef = 0;
     scene1.act(player, updateScore, actionCoef);
 
-    player.update(updateScore); // 依照結果升級
-    crush1.update(player.getAttributes(), actionCoef);
+    // player.update(updateScore); // 依照結果升級
+    // crush1.update(player.getAttributes(), actionCoef);
 
-    // 印出結果
-    player.print();
-
-    Game Game;
-    Game.init();
-    crush1.print();
+    // // 印出結果
+    // player.print();
+    // crush1.print();
 
     // 關閉檔案
     scene_json.close();

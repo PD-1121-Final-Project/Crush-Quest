@@ -24,17 +24,17 @@ public:
 };
 */
 
-Action::Action(string name) { this->name = name; }
-Action::Action(string name, double actionCoef) {
-    this->name = name;
-    this->code = actionCoef;
+Action::Action(string description, double actionCoef, string response) {
+    this->description = description;
+    this->actionCoef = actionCoef;
+    this->response = response;
 }
 
-void Action::printName() const { cout << this->name; }
+void Action::printDescription() const { cout << this->description; }
 
 Action::~Action() {}
 
 void Action::operator=(const Action& a) {
-    this->name = a.name;
-    this->code = a.code;
+    this->description = a.description;
+    this->actionCoef = a.actionCoef;
 }
