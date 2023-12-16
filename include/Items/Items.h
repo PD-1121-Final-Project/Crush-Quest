@@ -1,3 +1,6 @@
+#ifndef ITEM_H
+#define ITEM_H
+
 #include <iostream>
 #include <string>
 #include "../Characters/Personality.h"
@@ -23,3 +26,5 @@ public:
 personality init = {0,0,0,0,0,0};
 
 Items perfume("perfume", init, 0);
+
+#endif 

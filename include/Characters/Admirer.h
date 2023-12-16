@@ -15,7 +15,7 @@ class Admirer : public Character {
     // 道具的array
 
   public:
-    Admirer(const std::string& name, int age, personality attributes);
+    Admirer(const std::string& name, personality attributes);
     ~Admirer();
     void print();
     void update(personality newAttributes);

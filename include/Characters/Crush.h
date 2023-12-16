@@ -17,7 +17,7 @@ class Crush : public Character {
 
   public:
     // // Constructor and destructor
-    Crush(const std::string& name, int age, personality attributes);
+    Crush(const std::string& name, personality attributes);
     ~Crush();
 
     // // Overridden method from Character
