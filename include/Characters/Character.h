@@ -19,6 +19,7 @@ class Character {
     Character(const string& name, personality attributes);
     ~Character();
     void print();
+    personality getPersonality() {return attributes;};
 
     // // Virtual methods that can be overridden by child classes
     // virtual void displayAffection() = 0;

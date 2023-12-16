@@ -20,5 +20,8 @@ void slowPrint(string statement)
     }
     cout << "\n";
 }
+void sleep(int ms){
+    this_thread::sleep_for(chrono::milliseconds(ms));
+}
 
 #endif
