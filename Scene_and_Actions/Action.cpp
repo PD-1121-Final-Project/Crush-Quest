@@ -24,9 +24,10 @@ public:
 };
 */
 
-Action::Action(int n, string s) {
-    this->code = n;
-    this->name = s;
+Action::Action(string name) { this->name = name; }
+Action::Action(string name, double actionCoef) {
+    this->name = name;
+    this->code = actionCoef;
 }
 
 void Action::printName() const { cout << this->name; }
