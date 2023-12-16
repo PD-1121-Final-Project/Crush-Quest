@@ -26,7 +26,7 @@ void slowPrint(string statement) {
     for (char character : statement) {
         cout << character;
         this_thread::sleep_for(
-            chrono::milliseconds(50)); // Adjust delay time as needed
+            chrono::milliseconds(1)); // Adjust delay time as needed
         flush(cout);
     }
 
@@ -35,18 +35,29 @@ void slowPrint(string statement) {
 
 void sleep(int ms) { this_thread::sleep_for(chrono::milliseconds(ms)); }
 
-void rangePrint(double x) {
-    if (x > 80) {
-        cout << "*****";
-    } else if (x > 60) {
-        cout << "****";
-    } else if (x > 40) {
-        cout << "***";
-    } else if (x > 20) {
-        cout << "**";
-    } else {
-        cout << "*";
-    }
+void rangePrint(double x)
+{
+	if(x > 4)
+	{
+		cout << "*****";
+	}
+	else if(x > 3)
+	{
+		cout << "****";
+	}
+	else if(x > 2)
+	{
+		cout << "***";
+	}
+	else if (x > 1)
+	{
+		cout << "**";
+	}
+	else
+	{
+		cout << "*";
+	}
+
 }
 
 #endif

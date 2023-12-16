@@ -53,8 +53,8 @@ class Event {
         this_thread::sleep_for(chrono::milliseconds(500));
     }
     void printActionChoices() {
-        cout << "你可以選擇:"
-             << "\n";
+        cout << "你可以選擇:" << "\n";
+        
         for (int i = 0; i < actionChoiceCnt; i++) {
             cout << "(" << i + 1 << ") ";
             actionChoice[i]->printDescription();
