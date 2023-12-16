@@ -1,8 +1,8 @@
 // #include "include/Characters/Admirer.h"
 #include "include/Characters/Crush.h"
 #include "include/Characters/Personality.h"
-#include "include/Scene_Action/Scene.h"
 #include "include/Game/Game.h"
+#include "include/Scene_Action/Scene.h"
 #include "include/jsonToString.h"
 #include <fstream>
 #include <iostream>
