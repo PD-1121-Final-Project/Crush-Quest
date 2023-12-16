@@ -1,8 +1,8 @@
 #include "../include/Characters/Crush.h"
 #include "../include/Characters/Admirer.h"
 
-Crush::Crush(const string& name, int age, Personality attributes)
-    : Character(name, age, attributes) {}
+Crush::Crush(const string& name, Personality attributes)
+    : Character(name, attributes) {}
 
 Crush::~Crush() {}
 
