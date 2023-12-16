@@ -6,6 +6,7 @@
 #include <sstream>
 #include <thread>
 #include <chrono>
+#include "../include/Scene_Action/Function.h"
 using namespace std;
 
 void slowPrint(string statement)

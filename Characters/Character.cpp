@@ -1,5 +1,5 @@
 #include "../include/Characters/Character.h"
-#include "../include/Characters/personality.h"
+#include "../include/Characters/Personality.h"
 
 #include <iostream>
 #include <string>

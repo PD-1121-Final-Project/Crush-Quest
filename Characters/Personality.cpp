@@ -1,4 +1,4 @@
-﻿#include "../include/Characters/personality.h"
+﻿#include "../include/Characters/Personality.h"
 #include <iostream>
 using namespace std;
 

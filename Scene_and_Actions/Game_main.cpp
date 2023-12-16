@@ -2,20 +2,20 @@
 #include <string>
 #include <sstream>
 
-#include "Functions.h"
-#include "Action.h"
-#include "Scene.h"
-#include "Constants.h"
+#include "../include/Scene_Action/Function.h"
+#include "../include/Scene_Action/Action.h"
+#include "../include/Scene_Action/Scene.h"
+#include "../include/Scene_Action/Constant.h"
 using namespace std;
 
 
-int main()
+int testScene()
 {
-	Action TALK = Action(0, "²á¤Ñ");
-	Action SCROLL_PHONE = Action(1, "·Æ¤â¾÷");
-	Action WINK = Action(2, "©ß´A²´");
-	Action FIGHT = Action(3, "¥´¬[");
-	Action STUDY = Action(4, "Åª®Ñ");
+	Action TALK = Action(0, "ï¿½ï¿½ï¿½");
+	Action SCROLL_PHONE = Action(1, "ï¿½Æ¤ï¿½ï¿½");
+	Action WINK = Action(2, "ï¿½ß´Aï¿½ï¿½");
+	Action FIGHT = Action(3, "ï¿½ï¿½ï¿½[");
+	Action STUDY = Action(4, "Åªï¿½ï¿½");
 	
 	Action** action_list = new Action*[TOTAL_ACTION_CNT];
 	action_list[0] = &TALK;
@@ -24,7 +24,7 @@ int main()
 	action_list[3] = &FIGHT;
 	action_list[4] = &STUDY;
 	
-	Scene DAY_ONE = Scene("¤µ¤Ñ§A¨Ó¨ì¨t¤Wªºªï·s¡A¬Ý¨ì¤@­Ó¦P¾Ç§A¤@¨£Áé±¡..........", 5, action_list);
+	Scene DAY_ONE = Scene("ï¿½ï¿½ï¿½Ñ§Aï¿½Ó¨ï¿½tï¿½Wï¿½ï¿½ï¿½ï¿½sï¿½Aï¿½Ý¨ï¿½@ï¿½Ó¦Pï¿½Ç§Aï¿½@ï¿½ï¿½ï¿½é±¡..........", 5, action_list);
 	DAY_ONE.happen();
 	
 
