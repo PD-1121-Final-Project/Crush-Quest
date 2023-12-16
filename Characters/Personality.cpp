@@ -12,22 +12,20 @@ void Personality::print() {
     cout << "| intelligence: ";
     rangePrint(iq);
     cout << " |";
-    sleep(700);
 	
     cout << "| physical: ";
 	rangePrint(physical) ;
 	cout << " |";
-	sleep(700);
 	
     cout << "| talent: ";
     rangePrint(talent);
     cout << " |";
-    sleep(700);
+
 	
     cout << "| appearance: ";
     rangePrint(appearance);
     cout << " |";
-    sleep(700);
+
 	
     cout << "| luck: ";
     rangePrint(luck);
