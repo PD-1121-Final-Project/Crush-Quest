@@ -16,3 +16,7 @@ void Admirer::print() {
     Character::print();
     cout << endl;
 }
+
+void Admirer::update(personality newAttributes) {
+    this->attributes = newAttributes;
+}
