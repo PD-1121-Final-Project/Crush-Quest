@@ -18,6 +18,7 @@ class Admirer : public Character {
     Admirer(const std::string& name, int age, personality attributes);
     ~Admirer();
     void print();
+    void update(personality newAttributes);
 };
 
 #endif // ADMIRER_H
