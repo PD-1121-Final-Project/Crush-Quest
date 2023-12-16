@@ -14,7 +14,8 @@ int main() {
 
     // 建立一個暗戀對象
     // appearance, iq, luck, physical, talent, wealth
-    struct personality crushAttr = {30, 20, 30, 20, 20, 30};
+    struct personality crushAttr = {30, 400, 30, 20, 20, 30};
+    crushAttr.iq = 300;
     Crush crush1("JJJ", 22, crushAttr);
     crush1.print();
 
