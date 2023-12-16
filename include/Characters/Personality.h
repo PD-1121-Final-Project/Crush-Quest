@@ -4,7 +4,8 @@
 #ifndef PERSONALITY_H
 #define PERSONALITY_H
 
-const double CORRNUM = 5.0; //the number of attributes used to calculate correlation
+const double CORRNUM =
+    5.0; // the number of attributes used to calculate correlation
 
 struct Personality {
     double wealth;
@@ -19,7 +20,7 @@ struct Personality {
     double standardDeviation() const;
 
     void print();
-    void operator+=(Personality& p);
+    void operator+=(const Personality& p);
     double getCorr(const Personality& other) const;
 };
 
