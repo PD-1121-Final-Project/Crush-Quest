@@ -33,21 +33,18 @@ class Event {
         this->dialogs = JsonToString(eventObj["dialogs"]);
         this->actionChoiceCnt = eventObj["actions"].size();
         this->actionChoice = new Action*[this->actionChoiceCnt];
-        
+
         for (int j = 0; j < this->actionChoiceCnt; j++) {
             Json::Value actionObj = eventObj["actions"][j];
-            
-            Personality updateScore = {actionObj["updateScore"][0].asDouble(), 
-                                    actionObj["updateScore"][1].asDouble(), 
-                                    actionObj["updateScore"][2].asDouble(), 
-                                    actionObj["updateScore"][3].asDouble(), 
-                                    actionObj["updateScore"][4].asDouble()};
-            cout << "updateScore: ";
-            updateScore.print();
+
+            Personality updateScore = {actionObj["updateScore"][0].asDouble(),
+                                       actionObj["updateScore"][1].asDouble(),
+                                       actionObj["updateScore"][2].asDouble(),
+                                       actionObj["updateScore"][3].asDouble(),
+                                       actionObj["updateScore"][4].asDouble()};
             this->actionChoice[j] =
                 new Action(JsonToString(actionObj["description"]),
-                           actionObj["actionCoef"].asDouble(),
-                           updateScore,
+                           actionObj["actionCoef"].asDouble(), updateScore,
                            JsonToString(actionObj["response"]));
         }
     }
@@ -59,12 +56,15 @@ class Event {
         delete[] this->actionChoice;
     }
     void printDialogs() {
-        slowPrint(dialogs);
+        termios orig_termios;
+        tcgetattr(STDIN_FILENO, &orig_termios);
+        slowPrint(dialogs, &orig_termios);
         this_thread::sleep_for(chrono::milliseconds(500));
     }
     void printActionChoices() {
-        cout << "你可以選擇:" << "\n";
-        
+        cout << "你可以選擇:"
+             << "\n";
+
         for (int i = 0; i < actionChoiceCnt; i++) {
             cout << "(" << i + 1 << ") ";
             actionChoice[i]->printDescription();

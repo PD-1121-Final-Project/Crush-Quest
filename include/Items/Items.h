@@ -1,22 +1,24 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include "../Characters/Character.h"
+#include "../Characters/Personality.h"
 #include <iostream>
 #include <string>
-#include "../Characters/Personality.h"
-#include "../Characters/Character.h"
 
 using namespace std;
 
-class Items
-{
-private:
+class Items {
+  private:
     string itemName;
-    int itemNum; //玩家擁有該item的數量
-    Personality increaseRate; //使用此item會各自增加的屬性值量
+    int itemNum;              // 玩家擁有該item的數量
+    Personality increaseRate; // 使用此item會各自增加的屬性值量
     int impressionIncre;
-public:
-    Items(string name, Personality IR, int impreIncre):itemName(name), increaseRate(IR), itemNum(0), impressionIncre(impreIncre){};
+
+  public:
+    Items(string name, Personality IR, int impreIncre)
+        : itemName(name), increaseRate(IR), itemNum(0),
+          impressionIncre(impreIncre){};
     ~Items();
     void print();
     int getItemNum() const;
@@ -24,6 +26,4 @@ public:
     void usingItemTo(Character&);
 };
 
-
-
-#endif 
+#endif
