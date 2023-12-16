@@ -3,7 +3,6 @@
 #ifndef CRUSH_H
 #define CRUSH_H
 
-#include "Admirer.h"
 #include "Character.h"
 #include "Personality.h"
 #include <iostream>
@@ -17,12 +16,12 @@ class Crush : public Character {
 
   public:
     // // Constructor and destructor
-    Crush(const std::string& name, personality attributes);
+    Crush(const std::string& name, int age, Personality attributes);
     ~Crush();
 
     // // Overridden method from Character
     void print();
-    void calcLove(Admirer admirer);
+    void update(Personality admirerAtt, double actionCoef);
 };
 
 #endif // CRUSH_H
