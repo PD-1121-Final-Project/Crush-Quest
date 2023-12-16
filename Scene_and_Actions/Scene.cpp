@@ -81,6 +81,11 @@ void Scene::act(Admirer player, Personality& updateScore, double& actionCoef) {
         // print player decision
         this->events[i]->printDecision(actionDecision_cin);
 
+        // print action response
+        slowPrint(
+            this->events[i]->actionChoice[actionDecision_cin]->getResponse()
+        );
+
         // get action object
         Action chosenAction =
             *(this->events[i]->actionChoice[actionDecision_cin]);

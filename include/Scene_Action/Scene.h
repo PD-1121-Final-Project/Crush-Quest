@@ -33,11 +33,21 @@ class Event {
         this->dialogs = JsonToString(eventObj["dialogs"]);
         this->actionChoiceCnt = eventObj["actions"].size();
         this->actionChoice = new Action*[this->actionChoiceCnt];
+        
         for (int j = 0; j < this->actionChoiceCnt; j++) {
             Json::Value actionObj = eventObj["actions"][j];
+            
+            Personality updateScore = {actionObj["updateScore"][0].asDouble(), 
+                                    actionObj["updateScore"][1].asDouble(), 
+                                    actionObj["updateScore"][2].asDouble(), 
+                                    actionObj["updateScore"][3].asDouble(), 
+                                    actionObj["updateScore"][4].asDouble()};
+            cout << "updateScore: ";
+            updateScore.print();
             this->actionChoice[j] =
                 new Action(JsonToString(actionObj["description"]),
                            actionObj["actionCoef"].asDouble(),
+                           updateScore,
                            JsonToString(actionObj["response"]));
         }
     }
