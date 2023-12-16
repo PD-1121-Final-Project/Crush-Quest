@@ -9,6 +9,7 @@ class Action
 protected:
 	string name;
 	int code;
+    double coef;
 	
 public:
     // Constructor
@@ -20,6 +21,7 @@ public:
 
     // Functions
     void printName() const;
+    double getCoef() const { return coef;}
 };
 
 #endif

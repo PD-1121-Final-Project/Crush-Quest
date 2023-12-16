@@ -5,12 +5,10 @@
 #include <string>
 using namespace std;
 
-Character::Character(const string& name, int age, personality attributes) {
+Character::Character(const string& name, int age, Personality attributes) {
     this->name = name;
     this->age = age;
     this->attributes = attributes;
 }
-
-Character::~Character() { cout << "Character destructor called" << endl; }
 
 void Character::print() { this->attributes.print(); }

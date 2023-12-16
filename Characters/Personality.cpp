@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-void personality::print() {
+void Personality::print() {
     cout << "| wealth: " << wealth << " | ";
     
     cout << "intellegence: " << iq << " | ";
@@ -16,11 +16,48 @@ void personality::print() {
     
     cout << "luck: " << luck <<  " |";
 }
-void personality::operator+=(personality& p){
+
+void Personality::operator+=(Personality& p){
     wealth += p.wealth;
     iq += p.iq;
     physical += p.physical;
     talent += p.talent;
     appearance += p.appearance;
     luck += p.luck;
+}
+double Personality::mean() const{
+    return (wealth + iq + physical + talent + appearance) / CORRNUM;
+}
+
+double Personality::covariance(const Personality& other) const{
+        double mean1 = mean();
+        double mean2 = other.mean();
+
+        double cov = (wealth - mean1) * (other.wealth - mean2) +
+                     (iq - mean1) * (other.iq - mean2) +
+                     (physical - mean1) * (other.physical - mean2) +
+                     (talent - mean1) * (other.talent - mean2) +
+                     (appearance - mean1) * (other.appearance - mean2);
+
+        return cov / CORRNUM;  
+    }
+
+double Personality::standardDeviation() const {
+    double meanVal = mean();
+
+    double variance = pow(wealth - meanVal, 2) +
+                        pow(iq - meanVal, 2) +
+                        pow(physical - meanVal, 2) +
+                        pow(talent - meanVal, 2) +
+                        pow(appearance - meanVal, 2);
+
+    return sqrt(variance / CORRNUM); 
+}
+
+double Personality::getCorr(const Personality& other) const {
+    double cov = covariance(other);
+    double stdDev1 = standardDeviation();
+    double stdDev2 = other.standardDeviation();
+
+    return cov / (stdDev1 * stdDev2);
 }
