@@ -113,9 +113,9 @@ void Scene::printActionDecision(int actionNum) {
     cout << "\n";
 }
 
-personality Scene::getResult(Admirer player, Action a) {
-    personality currentPersonality = player.getPersonality();
-    // TODO : add the result of the action to the personality
+Personality Scene::getResult(Admirer player, Action a) {
+    Personality currentPersonality = player.getPersonality();
+    // TODO : add the result of the action to the Personality
     currentPersonality.wealth += 1;
     currentPersonality.iq += 1;
     currentPersonality.physical += 1;
@@ -134,7 +134,7 @@ void Scene::happen() {
     this->printSituation();
 }
 
-personality Scene::act(Admirer player) {
+void Scene::act(Admirer player, Personality& updateScore, double& actionCoef) {
     this->printActionChoice();
 
     // get player input
@@ -151,7 +151,6 @@ personality Scene::act(Admirer player) {
     Action chosenAction = *(this->actionChoice[actionDecision_cin]);
 
     // get result
-    personality newPersonality = this->getResult(player, chosenAction);
-
-    return newPersonality;
+    updateScore = this->getResult(player, chosenAction);
+    actionCoef = chosenAction.getCoef();
 }

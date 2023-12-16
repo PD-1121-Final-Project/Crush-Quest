@@ -13,17 +13,18 @@ class Character {
     // Attributes common to all Characters
     string name;
     int age;
-    personality attributes;
+    Personality attributes;
 
   public:
     // // Constructors and destructors if needed
-    Character(const string& name, int age, personality attributes);
-    ~Character();
+    Character(const string& name, Personality attributes);
+    ~Character() {};
     void print();
-    personality getPersonality() { return attributes; };
+    Personality getPersonality() {return attributes;};
 
     // // Virtual methods that can be overridden by child classes
     // virtual void displayAffection() = 0;
+
 };
 
 #endif // CHARACTER_H

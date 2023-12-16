@@ -6,17 +6,17 @@
 #include <string>
 using namespace std;
 
-Admirer::Admirer(const std::string& name, int age, personality attributes)
-    : Character(name, age, attributes) {}
+Admirer::Admirer(const std::string& name, Personality attributes)
+    : Character(name, attributes) {}
 
 Admirer::~Admirer() {}
 
 void Admirer::print() {
-    cout << "Admirer:" << name << " " << age << endl;
+    cout << "Admirer:" << name << " "  << endl;
     Character::print();
     cout << endl;
 }
 
-void Admirer::update(personality newAttributes) {
-    this->attributes = newAttributes;
+void Admirer::update(Personality newAttributes) {
+    this->attributes += newAttributes;
 }
