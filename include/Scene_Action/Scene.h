@@ -16,6 +16,8 @@
 using namespace std;
 
 class Event {
+    friend class Scene;
+
   private:
     string dialogs;
     Action** actionChoice;
@@ -67,6 +69,8 @@ class Event {
 };
 
 class Scene {
+    friend class Event;
+
   protected:
     string name;
     string introduction;
