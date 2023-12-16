@@ -6,7 +6,7 @@
 #include <string>
 using namespace std;
 
-Admirer::Admirer(const std::string& name, personality attributes)
+Admirer::Admirer(const std::string& name, Personality attributes)
     : Character(name, attributes) {}
 
 Admirer::~Admirer() {}
@@ -17,6 +17,6 @@ void Admirer::print() {
     cout << endl;
 }
 
-void Admirer::update(personality newAttributes) {
+void Admirer::update(Personality newAttributes) {
     this->attributes = newAttributes;
 }

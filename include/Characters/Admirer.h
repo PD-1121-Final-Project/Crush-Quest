@@ -15,10 +15,10 @@ class Admirer : public Character {
     // 道具的array
 
   public:
-    Admirer(const std::string& name, personality attributes);
+    Admirer(const std::string& name, Personality attributes);
     ~Admirer();
     void print();
-    void update(personality newAttributes);
+    void update(Personality newAttributes);
 };
 
 #endif // ADMIRER_H

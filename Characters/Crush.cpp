@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-Crush::Crush(const std::string& name, personality attributes)
+Crush::Crush(const std::string& name, Personality attributes)
     : Character(name, attributes) {}
 
 Crush::~Crush() {}

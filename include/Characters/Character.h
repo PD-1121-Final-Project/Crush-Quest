@@ -12,14 +12,14 @@ class Character {
   protected:
     // Attributes common to all Characters
     string name;
-    personality attributes;
+    Personality attributes;
 
   public:
     // // Constructors and destructors if needed
-    Character(const string& name, personality attributes);
+    Character(const string& name, Personality attributes);
     ~Character();
     void print();
-    personality getPersonality() {return attributes;};
+    Personality getPersonality() {return attributes;};
 
     // // Virtual methods that can be overridden by child classes
     // virtual void displayAffection() = 0;

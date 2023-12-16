@@ -22,7 +22,7 @@ class Scene {
     void printActionChoice();
     void printActionDecision(int actionNum);
     void printDecisionConsequence(int actionNum);
-    personality getResult(Admirer player, Action a);
+    Personality getResult(Admirer player, Action a);
 
   public:
     // Constructors
@@ -32,6 +32,6 @@ class Scene {
 
     // Functions
     void happen();
-    personality act(Admirer player);
+    Personality act(Admirer player);
 };
 #endif

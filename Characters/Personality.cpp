@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-void personality::print() {
+void Personality::print() {
     cout << "| wealth: " << wealth << " | ";
     
     cout << "intellegence: " << iq << " | ";
@@ -16,7 +16,7 @@ void personality::print() {
     
     cout << "luck: " << luck <<  " |";
 }
-void personality::operator+=(personality& p){
+void Personality::operator+=(Personality& p){
     wealth += p.wealth;
     iq += p.iq;
     physical += p.physical;

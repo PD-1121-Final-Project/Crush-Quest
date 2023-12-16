@@ -4,7 +4,7 @@
 #ifndef PERSONALITY_H
 #define PERSONALITY_H
 
-struct personality {
+struct Personality {
     double wealth;
     double iq;
     double physical;
@@ -13,7 +13,7 @@ struct personality {
     double luck;
 
     void print();
-    void operator+=(personality& p);
+    void operator+=(Personality& p);
 };
 
 #endif // PERSONALITY_H
