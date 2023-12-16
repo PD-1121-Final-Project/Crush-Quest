@@ -1,23 +1,25 @@
-#ifndef FUNCTIONS_H 
-#define FUNCTIONS_H 
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
 
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <thread>
-#include <chrono>
 #include "../include/Scene_Action/Function.h"
+#include <chrono>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <thread>
 using namespace std;
 
-void slowPrint(string statement)
-{
+void slowPrint(string statement) {
     istringstream iss(statement);
 
     char character;
     while (iss >> character) {
         cout << character;
-        this_thread::sleep_for(chrono::milliseconds(50));  // Adjust the delay time as needed
+        this_thread::sleep_for(
+            chrono::milliseconds(50)); // Adjust the delay time as needed
+        flush(cout);
     }
+
     cout << "\n";
 }
 

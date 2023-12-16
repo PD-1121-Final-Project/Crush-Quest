@@ -5,6 +5,7 @@
 #include "../Characters/Personality.h"
 #include "Action.h"
 #include <iostream>
+#include <json/json.h>
 #include <sstream>
 #include <string>
 
@@ -16,6 +17,8 @@ class Scene {
     string situationStatement;
     int actionChoiceCnt;
     Action** actionChoice;
+    string* dialogs;
+    int dialogsCnt;
 
     // Functions
     void printSituation() const;
@@ -28,6 +31,7 @@ class Scene {
     // Constructors
     Scene(string statement, int actionChoiceCnt, Action** actionList);
     Scene(string name);
+    Scene(string name, Json::Value sceneObj);
     ~Scene();
 
     // Functions

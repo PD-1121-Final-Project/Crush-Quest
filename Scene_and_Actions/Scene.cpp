@@ -7,41 +7,21 @@ using namespace std;
 #include "../include/Characters/Personality.h"
 #include "../include/Scene_Action/Function.h"
 #include "../include/Scene_Action/Scene.h"
-
-/*
-class Scene
-{
-protected:
-        string situationStatement;
-        int actionChoiceCnt;
-    Action** actionChoice;
-
-    //Functions
-    void printSituation() const;
-        void printActionChoice() const;
-        void printActionDecision(int actionNum);
-        void printDecisionConsequence(int actionNum);
-
-public:
-        // Constructors
-        Scene(string statement, int actionChoiceCnt, Action** actionList);
-        ~Scene();
-
-        // Functions
-        void happen();
-};
-*/
+#include "../include/jsonToString.h"
+#include <chrono>
+#include <json/json.h>
+#include <thread>
 
 Scene::Scene(string name) {
     this->name = name;
     if (name == "Library") {
         this->situationStatement = "你在圖書館裡面，你要做什麼呢?";
         const int TOTAL_ACTION_CNT = 5;
-        Action* TALK = new Action(0, "找曖昧對象聊天");
-        Action* SCROLL_PHONE = new Action(1, "滑手機");
-        Action* WINK = new Action(2, "眨眼");
-        Action* FIGHT = new Action(3, "打架");
-        Action* STUDY = new Action(4, "讀書");
+        Action* TALK = new Action("找曖昧對象聊天");
+        Action* SCROLL_PHONE = new Action("滑手機");
+        Action* WINK = new Action("眨眼");
+        Action* FIGHT = new Action("打架");
+        Action* STUDY = new Action("讀書");
 
         this->actionChoice = new Action*[TOTAL_ACTION_CNT];
         actionChoice[0] = TALK;
@@ -51,6 +31,39 @@ Scene::Scene(string name) {
         actionChoice[4] = STUDY;
         this->actionChoiceCnt = TOTAL_ACTION_CNT;
     }
+}
+
+Scene::Scene(string name, Json::Value sceneObj) {
+    this->name = JsonToString(sceneObj["name"]);
+    this->situationStatement = JsonToString(sceneObj["situationStatement"]);
+
+    // Allocate memory for dialogs
+    const Json::Value dialogsArr = sceneObj["dialogs"];
+    this->dialogsCnt = dialogsArr.size();
+    this->dialogs = new string[dialogsCnt];
+    cout << dialogsCnt << endl;
+
+    // Fill dialogs with action names
+    for (int i = 0; i < dialogsCnt; ++i) {
+        if (!dialogsArr[i].isNull()) {
+            this->dialogs[i] = JsonToString(dialogsArr[i]);
+        }
+    }
+
+    const int TOTAL_ACTION_CNT = 5;
+    Action* TALK = new Action("找曖昧對象聊天");
+    Action* SCROLL_PHONE = new Action("滑手機");
+    Action* WINK = new Action("眨眼");
+    Action* FIGHT = new Action("打架");
+    Action* STUDY = new Action("讀書");
+
+    this->actionChoice = new Action*[TOTAL_ACTION_CNT];
+    actionChoice[0] = TALK;
+    actionChoice[1] = SCROLL_PHONE;
+    actionChoice[2] = WINK;
+    actionChoice[3] = FIGHT;
+    actionChoice[4] = STUDY;
+    this->actionChoiceCnt = TOTAL_ACTION_CNT;
 }
 
 Scene::Scene(string statement, int actionChoiceCnt, Action** actionList) {
@@ -71,9 +84,18 @@ Scene::~Scene() {
     }
     delete[] this->actionChoice;
     this->actionChoice = nullptr;
+
+    delete[] this->dialogs;
 }
 
-void Scene::printSituation() const { slowPrint(this->situationStatement); }
+void Scene::printSituation() const {
+    slowPrint(this->situationStatement);
+    slowPrint("...");
+    for (int i = 0; i < dialogsCnt; i++) {
+        slowPrint(this->dialogs[i]);
+        this_thread::sleep_for(chrono::milliseconds(500));
+    }
+}
 
 void Scene::printActionChoice() {
     cout << "你可以選擇:"
