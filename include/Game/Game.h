@@ -38,6 +38,7 @@ public :
     void gameEnd();//遊戲結束
 
     void nextScene();//切換至下一個場景（一天結束）
+    void printCrush();
 };
 
 #endif // GAME_H

@@ -14,5 +14,7 @@ int main() {
     Game.init();
     Game.dayContinue();
     Game.gameEnd();
+
+    Game.printCrush();
     return 0;
 }

@@ -1,6 +1,7 @@
 #include "../include/Characters/Personality.h"
 #include "../include/Scene_Action/Function.h"
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 void Personality::print() {

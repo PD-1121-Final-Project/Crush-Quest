@@ -117,3 +117,7 @@ void Game::gameEnd()
     double end = player -> getPersonality().getCorr(crush1 -> getPersonality());
     cout << end;
 }
+void Game::printCrush()
+{
+    crush1->print();
+}
