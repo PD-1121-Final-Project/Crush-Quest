@@ -17,8 +17,8 @@ class Character {
 
   public:
     // // Constructors and destructors if needed
-    Character(const string& name, int age, Personality attributes);
-    virtual ~Character() = 0;
+    Character(const string& name, Personality attributes);
+    ~Character() {};
     void print();
     Personality getPersonality() {return attributes;};
 

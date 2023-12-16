@@ -17,10 +17,10 @@ void slowPrint(const string& message) {
     }
 }
 
-personality choose()  // 選擇角色
+Personality choose()  // 選擇角色
 {
     int choice ;
-    personality attribute;
+    Personality attribute;
 
     slowPrint("歡迎遊玩台大校園戀愛文字遊戲\n\n你是一位對校園充滿期待的大一新生，在這遊戲中，你能夠自由掌控你的未來走向，請選擇您的身家背景\n1.富二代\n2.體育健將\n3.高材生\n4.帥哥\n5.藝術家\n6.出身不太好，但做什麼事都特別順心的人\n7.全知全能\n（請輸入數字不需加點）");
 
@@ -76,7 +76,7 @@ string enterName()  // 輸入名稱
 
 void init(Admirer*& player)
 {
-    personality tempP = choose();
+    Personality tempP = choose();
     string tempN = enterName();
     player = new Admirer(tempN, tempP);
 };

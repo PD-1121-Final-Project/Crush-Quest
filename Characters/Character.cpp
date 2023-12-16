@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-Character::Character(const string& name, int age, Personality attributes) {
+Character::Character(const string& name, Personality attributes) {
     this->name = name;
     this->attributes = attributes;
 }

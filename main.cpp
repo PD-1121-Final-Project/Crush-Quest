@@ -1,7 +1,7 @@
 // #include "include/Characters/Admirer.h"
 #include "include/Characters/Crush.h"
 #include "include/Characters/Personality.h"
-#include "include/Init/Init.h"
+// #include "include/Init/Init.h"
 #include "include/Scene_Action/Scene.h"
 #include <iostream>
 using namespace std;
@@ -16,7 +16,7 @@ int main() {
     // 建立一個人物
     // appearance, iq, luck, physical, talent, wealth
     struct Personality playerAttr = {10, 20, 30, 40, 50, 60};
-    Admirer player("John", 25, playerAttr);
+    Admirer player("John", playerAttr);
     player.print();
 
     // 建立一個暗戀對象
