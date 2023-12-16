@@ -42,8 +42,7 @@ class Event {
                                     actionObj["updateScore"][2].asDouble(), 
                                     actionObj["updateScore"][3].asDouble(), 
                                     actionObj["updateScore"][4].asDouble()};
-            cout << "updateScore: ";
-            updateScore.print();
+
             this->actionChoice[j] =
                 new Action(JsonToString(actionObj["description"]),
                            actionObj["actionCoef"].asDouble(),

@@ -39,23 +39,23 @@ void rangePrint(double x)
 {
 	if(x > 4)
 	{
-		cout << "*****";
+		cout << "★★★★★";
 	}
 	else if(x > 3)
 	{
-		cout << "****";
+		cout << "★★★★✩";
 	}
 	else if(x > 2)
 	{
-		cout << "***";
+		cout << "★★★✩✩";
 	}
 	else if (x > 1)
 	{
-		cout << "**";
+		cout << "★★✩✩✩";
 	}
 	else
 	{
-		cout << "*";
+		cout << "★✩✩✩✩";
 	}
 
 }
