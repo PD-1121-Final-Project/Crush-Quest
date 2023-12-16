@@ -3,7 +3,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include "personality.h"
+#include "Personality.h"
 #include <iostream>
 #include <string>
 using namespace std;

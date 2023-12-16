@@ -3,9 +3,8 @@
 #include <sstream>
 using namespace std;
 
-#include "Scene.h"
-#include "Action.h"
-#include "Functions.h"
+#include "../include/Scene_Action/Scene.h"
+#include "../include/Scene_Action/Function.h"
 
 /*
 class Scene
@@ -65,7 +64,7 @@ void Scene::printSituation() const
 
 void Scene::printActionChoice()
 {
-	cout << "§A¥i¥H¿ï¾Ü:" << "\n";
+	cout << "ï¿½Aï¿½iï¿½Hï¿½ï¿½ï¿½:" << "\n";
 	for(int i = 0; i < this->actionChoiceCnt; i++)
 	{
 		cout << "(" << i+1 << ") ";
@@ -76,7 +75,7 @@ void Scene::printActionChoice()
 
 void Scene::printActionDecision(int actionNum)
 {	
-	cout << "§A¿ï¾Ü: ";
+	cout << "ï¿½Aï¿½ï¿½ï¿½: ";
 	this->actionChoice[actionNum]->printName();
 	cout << "\n";
 }
@@ -84,7 +83,7 @@ void Scene::printActionDecision(int actionNum)
 
 void Scene::printDecisionConsequence(int actionNum)
 {
-	slowPrint("µM«á.......");
+	slowPrint("ï¿½Mï¿½ï¿½.......");
 }
 
 void Scene::happen()

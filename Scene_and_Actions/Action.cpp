@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "Action.h"
-#include "Functions.h"
+#include "../include/Scene_Action/Action.h"
+
 using namespace std;
 
 /*

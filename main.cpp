@@ -1,6 +1,6 @@
 #include "include/Characters/Admirer.h"
 #include "include/Characters/Crush.h"
-#include "include/Characters/personality.h"
+#include "include/Characters/Personality.h"
 #include <iostream>
 using namespace std;
 
