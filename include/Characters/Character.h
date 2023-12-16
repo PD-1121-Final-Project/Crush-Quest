@@ -17,12 +17,13 @@ class Character {
   public:
     // // Constructors and destructors if needed
     Character(const string& name, Personality attributes);
-    ~Character();
+    ~Character() {};
     void print();
     Personality getPersonality() {return attributes;};
 
     // // Virtual methods that can be overridden by child classes
     // virtual void displayAffection() = 0;
+
 };
 
 #endif // CHARACTER_H

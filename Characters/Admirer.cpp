@@ -18,5 +18,5 @@ void Admirer::print() {
 }
 
 void Admirer::update(Personality newAttributes) {
-    this->attributes = newAttributes;
+    this->attributes += newAttributes;
 }

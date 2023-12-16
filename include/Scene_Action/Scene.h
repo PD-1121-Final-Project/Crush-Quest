@@ -32,6 +32,6 @@ class Scene {
 
     // Functions
     void happen();
-    Personality act(Admirer player);
+    void act(Admirer player, Personality& updateScore, double& actionCoef);
 };
 #endif

@@ -112,7 +112,7 @@ void Scene::happen() {
     this->printSituation();
 }
 
-Personality Scene::act(Admirer player) {
+void Scene::act(Admirer player, Personality& updateScore, double& actionCoef) {
     this->printActionChoice();
 
     // get player input
@@ -129,7 +129,6 @@ Personality Scene::act(Admirer player) {
     Action chosenAction = *(this->actionChoice[actionDecision_cin]);
 
     // get result
-    Personality newPersonality = this->getResult(player, chosenAction);
-
-    return newPersonality;
+    updateScore = this->getResult(player, chosenAction);
+    actionCoef = chosenAction.getCoef();
 }

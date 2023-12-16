@@ -4,6 +4,7 @@
 #define ADMIRER_H
 
 #include "Character.h"
+#include "Crush.h"
 #include "Personality.h"
 #include <iostream>
 #include <string>
@@ -19,6 +20,9 @@ class Admirer : public Character {
     ~Admirer();
     void print();
     void update(Personality newAttributes);
+    Personality getAttributes() const {return attributes;}
+  
+  friend class Crush;
 };
 
 #endif // ADMIRER_H

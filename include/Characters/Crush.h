@@ -3,7 +3,6 @@
 #ifndef CRUSH_H
 #define CRUSH_H
 
-#include "Admirer.h"
 #include "Character.h"
 #include "Personality.h"
 #include <iostream>
@@ -22,7 +21,7 @@ class Crush : public Character {
 
     // // Overridden method from Character
     void print();
-    void calcLove(Admirer admirer);
+    void update(Personality admirerAtt, double actionCoef);
 };
 
 #endif // CRUSH_H

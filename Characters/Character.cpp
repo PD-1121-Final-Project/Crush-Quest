@@ -10,6 +10,4 @@ Character::Character(const string& name, Personality attributes) {
     this->attributes = attributes;
 }
 
-Character::~Character() { cout << "Character destructor called" << endl; }
-
 void Character::print() { this->attributes.print(); }
