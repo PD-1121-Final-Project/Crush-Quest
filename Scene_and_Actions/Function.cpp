@@ -28,19 +28,19 @@ void sleep(int ms){
 
 void rangePrint(double x)
 {
-	if(x > 80)
+	if(x > 4)
 	{
 		cout << "*****";
 	}
-	else if(x > 60)
+	else if(x > 3)
 	{
 		cout << "****";
 	}
-	else if(x > 40)
+	else if(x > 2)
 	{
 		cout << "***";
 	}
-	else if (x > 20)
+	else if (x > 1)
 	{
 		cout << "**";
 	}
@@ -48,6 +48,7 @@ void rangePrint(double x)
 	{
 		cout << "*";
 	}
+
 }
 
 #endif

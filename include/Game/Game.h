@@ -2,7 +2,12 @@
 // GAME.h
 #ifndef GAME_H
 #define GAME_H
-
+// #include "include/Characters/Admirer.h"
+#include "../Characters/Crush.h"
+#include "../Scene_Action/Scene.h"
+#include "../jsonToString.h"
+#include <fstream>
+#include <json/json.h>
 #include <iostream>
 #include <string>
 #include <stdexcept> 
@@ -13,17 +18,26 @@
 #include "../Characters/Admirer.h"
 #include <vector>
 #include "../Items/Items.h"
+#include "../Scene_Action/Scene.h"
+#include "../Scene_Action/Function.h"
 using namespace std;
 
 class Game 
 {
 private :
+    int day;
     Admirer* player;
-    vector <Items> items ;
+    Crush* crush1;
+    vector <Items> items;
+    vector <Scene> Scenes;
 public :
-    Game (): player(nullptr) {};
-    ~Game(){delete player;};
-    void init();
+    Game ();
+    ~Game(){delete player; player = nullptr; delete crush1; crush1 = nullptr;};
+    void init();//遊戲開始
+    void dayContinue();//每天循環
+    void gameEnd();//遊戲結束
+
+    void nextScene();//切換至下一個場景（一天結束）
 };
 
 #endif // GAME_H
