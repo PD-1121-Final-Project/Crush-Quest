@@ -10,7 +10,9 @@ using namespace std;
 #include "../include/jsonToString.h"
 #include <chrono>
 #include <json/json.h>
+#include <termios.h>
 #include <thread>
+#include <unistd.h>
 
 Scene::Scene(string name, Json::Value sceneObj) {
     this->name = JsonToString(sceneObj["name"]);
@@ -44,36 +46,36 @@ Personality Scene::getResult(Admirer player, Action a) {
 }
 
 void Scene::happen() {
+    cout << '\n';
     slowPrint(this->introduction);
-    slowPrint("...");
 }
 
 void Scene::printEvent(int eventIndex) {
     // print event
+    // Store original terminal settings
     events[eventIndex]->printDialogs();
     events[eventIndex]->printActionChoices();
 }
 
 void Scene::act(Admirer player, Personality& updateScore, double& actionCoef) {
-
     for (int i = 0; i < this->eventCnt; i++) {
+        cout << "\n";
+        slowPrint("...");
         this->printEvent(i);
 
         int actionDecision_cin;
         // get player input
         do {
-        if (!(cin >> actionDecision_cin)) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
-        } else if (actionDecision_cin < 1 || actionDecision_cin > 3) {
-            slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
-        } else {
-            break;
-        }
-    } while (true);
-        
-        
+            if (!(cin >> actionDecision_cin)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+            } else if (actionDecision_cin < 1 || actionDecision_cin > 3) {
+                slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+            } else {
+                break;
+            }
+        } while (true);
 
         // change input index
         actionDecision_cin -= 1;
@@ -81,10 +83,15 @@ void Scene::act(Admirer player, Personality& updateScore, double& actionCoef) {
         // print player decision
         this->events[i]->printDecision(actionDecision_cin);
 
+        cout << "\n";
+
         // print action response
         slowPrint(
-            this->events[i]->actionChoice[actionDecision_cin]->getResponse()
-        );
+            this->events[i]->actionChoice[actionDecision_cin]->getResponse());
+
+        cout << "\n";
+
+        cout << "今天就這樣結束了...";
 
         // get action object
         Action chosenAction =
