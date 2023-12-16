@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include "../include/Characters/Personality.h"
-#include "../include/Items/Items.h"
+#include "../include/Item/Item.h"
 #include "../include/Characters/Character.h"
 #include "../include/Game/Game.h"
 #include "../include/Scene_Action/Function.h"
@@ -13,10 +13,38 @@
 using namespace std;
 Game::Game (): player(nullptr), day(0)
 {
+    //wealth iq; physical; talent appearance; luck
     Personality attributes = {2, 0, 0, 2, 4, 1};
     crush1 = new Crush("小美", attributes);
+    Personality luckPotionChange = {0,0,0,0,0,1};
+    Personality steroidChange = {0,0,1,0,0,0} ;
+    Personality smartMedChange = {0,1,0,0,0,0} ;
+    Personality makeUpChange = {0,0,0,0,1,0} ;
+    Personality moneyChange = {1,0,0,0,0,0} ;
+    Personality laxativeChange = {-0.5,-0.5,-0.5,-0.5,-0.5,-0.5};
+    Personality flowerChange = {0,0,0,0,0,0};
+    
+    
+    items.push_back(new Item("luckPotion", luckPotionChange, 2)); 
+    items.push_back(new Item("Steroid", steroidChange, 1)); 
+    items.push_back(new Item("smartMed", smartMedChange, 1)); 
+    items.push_back(new Item("makeUp", makeUpChange, 2)); 
+    items.push_back(new Item("money", moneyChange, 2)); 
+    items.push_back(new Item("laxative", laxativeChange, -10)); 
+    items.push_back(new Item("flower", flowerChange, +10)); 
 }
-
+Game::~Game()
+{
+    delete player; 
+    player = nullptr; 
+    delete crush1; 
+    crush1 = nullptr;
+    for(int i = 0; i < items.size(); i++)
+    {
+        delete items[i];
+        items[i] = nullptr;
+    }
+};
 void Game::init()
 {
     int choice ;
@@ -120,4 +148,16 @@ void Game::gameEnd()
 void Game::printCrush()
 {
     crush1->print();
+}
+
+void Game::gainItem()
+{
+
+}
+void Game::printItems()
+{
+    for(int i = 0; i < items.size(); i++)
+    {
+        items[i] -> print();
+    }
 }

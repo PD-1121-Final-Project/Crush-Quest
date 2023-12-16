@@ -17,7 +17,7 @@
 #include "../Characters/Character.h"
 #include "../Characters/Admirer.h"
 #include <vector>
-#include "../Items/Items.h"
+#include "../Item/Item.h"
 #include "../Scene_Action/Scene.h"
 #include "../Scene_Action/Function.h"
 using namespace std;
@@ -28,17 +28,19 @@ private :
     int day;
     Admirer* player;
     Crush* crush1;
-    vector <Items> items;
+    vector <Item*> items;
     vector <Scene> Scenes;
 public :
     Game ();
-    ~Game(){delete player; player = nullptr; delete crush1; crush1 = nullptr;};
+    ~Game();
     void init();//遊戲開始
     void dayContinue();//每天循環
     void gameEnd();//遊戲結束
 
     void nextScene();//切換至下一個場景（一天結束）
     void printCrush();
+    void gainItem();
+    void printItems();
 };
 
 #endif // GAME_H

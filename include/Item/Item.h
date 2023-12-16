@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class Items
+class Item
 {
 private:
     string itemName;
@@ -16,11 +16,10 @@ private:
     Personality increaseRate; //使用此item會各自增加的屬性值量
     int impressionIncre;
 public:
-    Items(string name, Personality IR, int impreIncre):itemName(name), increaseRate(IR), itemNum(0), impressionIncre(impreIncre){};
-    ~Items();
+    Item(string name, Personality IR, int impreIncre):itemName(name), increaseRate(IR), itemNum(0), impressionIncre(impreIncre){};
+    ~Item();
     void print();
-    int getItemNum() const;
-    void gainItem();
+    void gainThisItem();
     void usingItemTo(Character&);
 };
 
