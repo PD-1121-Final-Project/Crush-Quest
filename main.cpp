@@ -18,5 +18,8 @@ int main() {
     Crush crush1("JJJ", 22, crushAttr);
     crush1.print();
 
+    playerAttr += crushAttr;
+    playerAttr.print();
+    
     return 0;
 }
