@@ -16,14 +16,14 @@ int main() {
     // 建立一個人物
     // appearance, iq, luck, physical, talent, wealth
     struct personality playerAttr = {10, 20, 30, 40, 50, 60};
-    Admirer player("John", 25, playerAttr);
+    Admirer player("John", playerAttr);
     player.print();
 
     // 建立一個暗戀對象
     // appearance, iq, luck, physical, talent, wealth
     struct personality crushAttr = {30, 400, 30, 20, 20, 30};
     crushAttr.iq = 300;
-    Crush crush1("JJJ", 22, crushAttr);
+    Crush crush1("JJJ", crushAttr);
     crush1.print();
 
     playerAttr += crushAttr;
