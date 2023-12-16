@@ -19,6 +19,9 @@ int main() {
     Crush crush1("JJJ", 22, crushAttr);
     crush1.print();
 
+    playerAttr += crushAttr;
+    playerAttr.print();
+    
     // 建立今天的場景
     Scene scene1("Library"); // 活大、圖書館、教室、宿舍
 

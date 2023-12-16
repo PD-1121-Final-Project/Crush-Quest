@@ -13,7 +13,7 @@ struct personality {
     double luck;
 
     void print();
-    // void operator*(personality& p)
+    void operator+=(personality& p);
 };
 
 #endif // PERSONALITY_H
