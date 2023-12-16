@@ -12,7 +12,6 @@ class Character {
   protected:
     // Attributes common to all Characters
     string name;
-    int age;
     Personality attributes;
 
   public:

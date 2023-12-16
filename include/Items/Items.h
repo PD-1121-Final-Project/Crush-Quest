@@ -23,8 +23,7 @@ public:
     void gainItem();
     void usingItemTo(Character&);
 };
-Personality init = {0,0,0,0,0,0};
 
-Items perfume("perfume", init, 0);
+
 
 #endif 

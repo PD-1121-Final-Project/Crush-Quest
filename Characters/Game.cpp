@@ -1,23 +1,18 @@
+
 #include <iostream>
+#include "../include/Characters/Personality.h"
+#include "../include/Items/Items.h"
+#include "../include/Characters/Character.h"
+#include "../include/Game/Game.h"
+#include "../include/slowPrint/slowPrint.h"
 #include <string>
 #include <stdexcept> 
 #include <chrono>  // 新增的頭文件
 #include <thread>  // 新增的頭文件
-#include "../Characters/Personality.h"
-#include "../Characters/Character.h"
-#include "../Characters/Admirer.h"
-
+#include <vector>
 using namespace std;
-int const delay = 10;
 
-void slowPrint(const string& message) {
-    for (char c : message) {
-        cout << c << flush;
-        this_thread::sleep_for(chrono::milliseconds(delay));
-    }
-}
-
-Personality choose()  // 選擇角色
+void Game::init()
 {
     int choice ;
     Personality attribute;
@@ -40,43 +35,32 @@ Personality choose()  // 選擇角色
     {
     case 1:
         attribute = {4, 0, 0, 0, 2, 2};
-        return attribute;
+        break;
     case 2:
         attribute = {0, 0, 4, 2, 2, 1};
-        return attribute;
+        break;
     case 3:
         attribute = {0, 4, 0, 2, 2, 1};
-        return attribute;
+        break;
     case 4:
         attribute = {2, 0, 0, 2, 4, 1};
-        return attribute;
+        break;
     case 5:
         attribute = {0, 2, 0, 4, 2, 1};
-        return attribute;
+        break;
     case 6:
         attribute = {0, 0, 0, 0, 0 ,5};
-        return attribute;
+        break;
     case 7:
         attribute = {5 ,5 ,5 ,5 ,5 ,0};
-        return attribute;
+        break;
     default:
         attribute = {0 ,0 ,0 ,0 ,0 ,0};
-        return attribute;
         break;
     }
-}
-
-string enterName()  // 輸入名稱
-{
     string name;
     slowPrint("請輸入角色名稱:");
     cin >> name;
-    return name;
-}
 
-void init(Admirer*& player)
-{
-    Personality tempP = choose();
-    string tempN = enterName();
-    player = new Admirer(tempN, tempP);
-};
+    player = new Admirer(name, attribute);
+}
