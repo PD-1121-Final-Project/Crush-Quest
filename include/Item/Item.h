@@ -23,6 +23,8 @@ public:
     void print();
     void gainThisItem();
     void usingItemTo(Character* object);
+    void printName();
+    int getItemNum(){return itemNum;}
 };
 
 

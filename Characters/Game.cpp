@@ -60,13 +60,13 @@ Game::Game() : player(nullptr), day(0) {
     Personality laxativeChange = {-0.5, -0.5, -0.5, -0.5, -0.5, -0.5};
     Personality flowerChange = {0, 0, 0, 0, 0, 0};
 
-    items.push_back(new Item("luckPotion", luckPotionChange, 2, "感覺今天特別走運，好像整個世界都對我微笑", "你在一個神秘的藥店中發現了一瓶「幸運藥水」，老板告訴你，它能讓你感受到今天的一切都充滿了好運。 ♪♪♪ 獲得道具「幸運藥水」"));
-    items.push_back(new Item("Steroid", steroidChange, 1, "感覺自己變強壯了，肌肉充滿力量，勇氣倍增", "在一家健身房，你找到了一瓶「類固醇」，教練向你保證，它能讓你的身體變得更強大，充滿力量。 ♪♪♪ 獲得道具「類固醇」"));
-    items.push_back(new Item("smartMed", smartMedChange, 1, "感覺自己變聰明了，思維變得清晰，解決問題事半功倍", "你在一家古老的書店中偶然發現了「聰明藥」，店主告訴你，只要使用它，你就能讓思維變得更加敏捷。 ♪♪♪ 獲得道具「聰明藥」"));
-    items.push_back(new Item("makeUp", makeUpChange, 2, "感覺自己變美美的，如花般綻放，自信滿滿", "在一場精緻的化妝品展覽上，你購得了一盒「讓人變美的神奇化妝品」，使用後讓你如花一般綻放。 ♪♪♪  獲得道具「化妝品」"));
-    items.push_back(new Item("money", moneyChange, 2, "感覺自己超有錢的，財源滾滾來，金錢如雨下", "在一個神秘的寶藏地點，你發現了一袋「擁有財富之力的金幣」，當你把它帶在身上時，突然感覺錢逐漸湧入你的生活。 ♪♪♪ 獲得道具「擁有財富之力的金幣」"));
-    items.push_back(new Item("laxative", laxativeChange, -10, "感覺自己有點不舒服，肚子有些翻江倒海，不太對勁", "在一家古老的藥店中，你被售賣一包「瀉藥」，但當你使用後，你感到肚子有些不適，這讓你深刻體會到藥物的力量。 ♪♪♪ 獲得道具「瀉藥」"));
-    items.push_back(new Item("flower", flowerChange, +10, "感覺更喜歡你了，心花怒放，愛意漫漫如春暖花開", "在一次浪漫的約會中，你收到了一束美麗的花束，當中夾雜著一朵神秘的「幸運之花」，當你握著它時，感覺心中的愛意更加綿長。 ♪♪♪ 獲得道具「幸運之花」"));
+    items.push_back(new Item("幸運藥水", luckPotionChange, 2, "感覺今天特別走運，好像整個世界都對我微笑", "你在一個神秘的藥店中發現了一瓶「幸運藥水」，老板告訴你，它能讓你感受到今天的一切都充滿了好運。 ♪♪♪ 獲得道具「幸運藥水」"));
+    items.push_back(new Item("類固醇", steroidChange, 1, "感覺自己變強壯了，肌肉充滿力量，勇氣倍增", "在一家健身房，你找到了一瓶「類固醇」，教練向你保證，它能讓你的身體變得更強大，充滿力量。 ♪♪♪ 獲得道具「類固醇」"));
+    items.push_back(new Item("聰明藥", smartMedChange, 1, "感覺自己變聰明了，思維變得清晰，解決問題事半功倍", "你在一家古老的書店中偶然發現了「聰明藥」，店主告訴你，只要使用它，你就能讓思維變得更加敏捷。 ♪♪♪ 獲得道具「聰明藥」"));
+    items.push_back(new Item("化妝品", makeUpChange, 2, "感覺自己變美美的，如花般綻放，自信滿滿", "在一場精緻的化妝品展覽上，你購得了一盒「讓人變美的神奇化妝品」，使用後讓你如花一般綻放。 ♪♪♪  獲得道具「化妝品」"));
+    items.push_back(new Item("擁有財富之力的金幣", moneyChange, 2, "感覺自己超有錢的，財源滾滾來，金錢如雨下", "在一個神秘的寶藏地點，你發現了一袋「擁有財富之力的金幣」，當你把它帶在身上時，突然感覺錢逐漸湧入你的生活。 ♪♪♪ 獲得道具「擁有財富之力的金幣」"));
+    items.push_back(new Item("瀉藥", laxativeChange, -10, "感覺自己有點不舒服，肚子有些翻江倒海，不太對勁", "在一家古老的藥店中，你被售賣一包「瀉藥」，但當你使用後，你感到肚子有些不適，這讓你深刻體會到藥物的力量。 ♪♪♪ 獲得道具「瀉藥」"));
+    items.push_back(new Item("愛情之花", flowerChange, +10, "感覺更喜歡你了，心花怒放，愛意漫漫如春暖花開", "在一次浪漫的約會中，你收到了一束美麗的花束，當中夾雜著一朵神秘的「愛情之花」，當你握著它時，感覺心中的愛意更加綿長。 ♪♪♪ 獲得道具「愛情之花」"));
 }
 Game::~Game() {
     delete player;
@@ -107,16 +107,16 @@ void Game::init() {
         attribute = {4, 0, 0, 0, 2, 2};
         break;
     case 2:
-        attribute = {0, 0, 4, 2, 2, 1};
+        attribute = {0, 0, 4, 2, 2, 2};
         break;
     case 3:
-        attribute = {0, 4, 0, 2, 2, 1};
+        attribute = {0, 4, 0, 2, 2, 2};
         break;
     case 4:
-        attribute = {2, 0, 0, 2, 4, 1};
+        attribute = {2, 0, 0, 2, 4, 2};
         break;
     case 5:
-        attribute = {0, 2, 0, 4, 2, 1};
+        attribute = {0, 2, 0, 4, 2, 2};
         break;
     case 6:
         attribute = {0, 0, 0, 0, 0, 5};
@@ -162,6 +162,9 @@ void Game::dayContinue() {
         if (i == 0) {
             cout << "\n今天是你與她相識的第" << i + 1 << "天" << endl;
         }
+        else if (i % 3 == 0 && i != 0) {
+            cout << "\n今天是你與她相識的第" << i * 6 << "天" << endl;
+        }
 
         Scene scene1("Library", sceneObj[i]); // 活大、圖書館、教室、宿舍
 
@@ -176,6 +179,11 @@ void Game::dayContinue() {
 
         player->update(updateScore); // 依照結果升級
         crush1->corUpdate(player->getAttributes(), actionCoef);
+
+        // 情敵攻擊事件
+        if (i > 5){
+            enemy->attack(*crush1, *player, this->getNonZeroItems(), this->getNonZeroItemCnt());
+        }
 
         // 印出結果
         cout << "\n";
@@ -233,4 +241,24 @@ void Game::printItems() {
     for (int i = 0; i < items.size(); i++) {
         items[i]->print();
     }
+}
+
+int Game::getNonZeroItemCnt() {
+    int cnt = 0;
+    for (int i = 0; i < items.size(); i++) {
+        if (items[i]->getItemNum() > 0) {
+            cnt++;
+        }
+    }
+    return cnt;
+}
+
+vector<Item*> Game::getNonZeroItems() {
+    vector<Item*> nonZeroItems;
+    for (int i = 0; i < items.size(); i++) {
+        if (items[i]->getItemNum() > 0) {
+            nonZeroItems.push_back(items[i]);
+        }
+    }
+    return nonZeroItems;
 }

@@ -17,11 +17,19 @@ void Item::print()
 void Item::gainThisItem()
 {
     itemNum++;
-    slowPrint ("-------------------------------------------------------\n" + getContent + "\n-------------------------------------------------------\n");
+    cout << "\n";
+    slowPrint (getContent);
+    cout << "\n";
+    printDashedLine();
 }
 void Item::usingItemTo(Character* object)
 {
     itemNum--; 
     object -> update(this -> increaseRate, this ->impressionIncre);
     slowPrint(object->getName() + printContent);
+}
+
+void Item::printName()
+{
+    cout << itemName;
 }
