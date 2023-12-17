@@ -20,7 +20,7 @@ public:
     ~Item();
     void print();
     void gainThisItem();
-    void usingItemTo(Character& object);
+    void usingItemTo(Character* object);
 };
 
 

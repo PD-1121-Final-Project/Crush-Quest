@@ -17,8 +17,8 @@ void Item::gainThisItem()
 {
     itemNum++;
 }
-void Item::usingItemTo(Character& object)
+void Item::usingItemTo(Character* object)
 {
     itemNum--; 
-    object.update(this -> increaseRate, this ->impressionIncre);
+    object -> update(this -> increaseRate, this ->impressionIncre);
 }
