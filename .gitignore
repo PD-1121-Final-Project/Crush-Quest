@@ -1,4 +1,4 @@
 main
-main.dSYM
+/main.dSYM/**
 **.DS_Store
 .vscode
