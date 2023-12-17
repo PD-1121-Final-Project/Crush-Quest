@@ -5,32 +5,32 @@
 using namespace std;
 
 void Personality::print() {
-    cout << "| wealth: ";
+    cout << "| 財富: ";
 
     rangePrint(wealth);
     cout << " | ";
 
-    cout << "intelligence: ";
+    cout << "智力: ";
 
     rangePrint(iq);
     cout << " | ";
 
-    cout << "physical: ";
+    cout << "體能: ";
 
     rangePrint(physical);
     cout << " | ";
 
-    cout << "talent: ";
+    cout << "才華: ";
 
     rangePrint(talent);
     cout << " | ";
 
-    cout << "appearance: ";
+    cout << "顏值: ";
 
     rangePrint(appearance);
     cout << " | ";
 
-    cout << "luck: ";
+    cout << "運氣: ";
 
     rangePrint(luck);
     cout << " |";
