@@ -9,13 +9,15 @@ ItemEvent::~ItemEvent() {
 }
 
 void ItemEvent::printItemChoices() {
+    
     if (itemChoiceCnt > 0) {
         cout << endl;
         cout << ">>"
                 << "\n";
         cout << endl;
 
-        for (int i = 0; i < itemChoiceCnt; i++) {
+        for (int i = 0; i < itemChoiceCnt; i++) 
+        {
             cout << "(" << i + 1 << ") ";
             itemChoice[i]->printName();
             cout << "\n";
@@ -59,7 +61,6 @@ void ItemEvent::startEvent(int& itemDecision_cin, int& targetDecision_cin) {
             break;
         }
     } while (true);
-    targetDecision_cin --;
 
     // print player decision and corresponding response
     

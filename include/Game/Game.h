@@ -46,6 +46,7 @@ class Game {
     void gainItem();
     void printItems();
     int getNonZeroItemCnt(); // 取得非零道具數量
+    vector<Item*> getNonZeroItems();
 
     friend class Event; // 取得遊戲中的道具
 };

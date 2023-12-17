@@ -24,6 +24,7 @@ void Enemy::attack(Crush& crush, Admirer& admirer, vector<Item*> items, int item
 
         int itemDecision_cin = 0, targetDecision_cin = 0;
         itemEvent.startEvent(itemDecision_cin, targetDecision_cin);
+        cout << "item: " << itemDecision_cin << " target: " << targetDecision_cin << endl;
 
         switch (targetDecision_cin)
         {

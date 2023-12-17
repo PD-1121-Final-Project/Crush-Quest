@@ -17,7 +17,10 @@ void Item::print()
 void Item::gainThisItem()
 {
     itemNum++;
-    slowPrint ("-------------------------------------------------------\n" + getContent + "\n-------------------------------------------------------\n");
+    cout << "\n";
+    slowPrint (getContent);
+    cout << "\n";
+    printDashedLine();
 }
 void Item::usingItemTo(Character* object)
 {
