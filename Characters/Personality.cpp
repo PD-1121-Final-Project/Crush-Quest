@@ -5,31 +5,46 @@
 using namespace std;
 
 void Personality::print() {
-    cout << "| wealth: ";
+    cout << "| wealth: "; flush(cout);
+    sleep(400);
 	rangePrint(wealth);
-	cout << " |";
+	cout << " | ";
+    flush(cout);
 	
-    cout << "| intelligence: ";
+    sleep(400);
+    cout << "intelligence: "; flush(cout);
+    sleep(400);
     rangePrint(iq);
-    cout << " |";
+    cout << " | ";
+    flush(cout);
 	
-    cout << "| physical: ";
+    sleep(400);
+    cout << "physical: "; flush(cout);
+    sleep(400);
 	rangePrint(physical) ;
-	cout << " |";
+	cout << " | ";
+    flush(cout);
 	
-    cout << "| talent: ";
+    sleep(400);
+    cout << "talent: "; flush(cout);
+    sleep(400);
     rangePrint(talent);
-    cout << " |";
+    cout << " | ";
+    flush(cout);
 
-	
-    cout << "| appearance: ";
+	sleep(400);
+    cout << "appearance: "; flush(cout);
+    sleep(400);
     rangePrint(appearance);
-    cout << " |";
+    cout << " | ";
+    flush(cout);
 
-	
-    cout << "| luck: ";
+	sleep(400);
+    cout << "luck: "; flush(cout);
+    sleep(400);
     rangePrint(luck);
     cout << " |";
+    flush(cout);
 
     cout << endl;
 }
