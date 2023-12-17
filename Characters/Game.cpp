@@ -33,7 +33,7 @@ Game::Game (): player(nullptr), day(0)
     items.push_back(new Item("makeUp", makeUpChange, 2)); 
     items.push_back(new Item("money", moneyChange, 2)); 
     items.push_back(new Item("laxative", laxativeChange, -10)); 
-    items.push_back(new Item("flower", flowerChange, +10)); 
+    items.push_back(new Item("flower", flowerChange, 10)); 
 }
 Game::~Game()
 {
@@ -101,7 +101,7 @@ void Game::init()
     cin >> name;
 
     player = new Admirer(name, attribute);
-    player->print();
+
 }
 void Game::dayContinue() {
     std::ifstream scene_json("./Scene_and_Actions/scene.json",
@@ -136,7 +136,7 @@ void Game::dayContinue() {
         scene1.act(*player, updateScore, actionCoef);
 
         player->update(updateScore); // 依照結果升級
-        crush1->update(player->getAttributes(), actionCoef);
+        crush1->corUpdate(player->getAttributes(), actionCoef);
     }
     // 印出結果
     player->print();

@@ -14,13 +14,13 @@ private:
     string itemName;
     int itemNum; //玩家擁有該item的數量
     Personality increaseRate; //使用此item會各自增加的屬性值量
-    int impressionIncre;
+    double impressionIncre;
 public:
-    Item(string name, Personality IR, int impreIncre):itemName(name), increaseRate(IR), itemNum(0), impressionIncre(impreIncre){};
+    Item(string name, Personality IR, double impreIncre):itemName(name), increaseRate(IR), itemNum(0), impressionIncre(impreIncre){};
     ~Item();
     void print();
     void gainThisItem();
-    void usingItemTo(Character&);
+    void usingItemTo(Character& object);
 };
 
 
