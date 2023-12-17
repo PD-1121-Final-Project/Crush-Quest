@@ -64,18 +64,29 @@ void slowPrint(string statement, termios* orig_termios) {
 
 void sleep(int ms) { this_thread::sleep_for(chrono::milliseconds(ms)); }
 
-void rangePrint(double x) {
-    if (x > 4) {
-        cout << "*****";
-    } else if (x > 3) {
-        cout << "****";
-    } else if (x > 2) {
-        cout << "***";
-    } else if (x > 1) {
-        cout << "**";
-    } else {
-        cout << "*";
-    }
+void rangePrint(double x)
+{
+	if(x > 4)
+	{
+		cout << "★★★★★";
+	}
+	else if(x > 3)
+	{
+		cout << "★★★★✩";
+	}
+	else if(x > 2)
+	{
+		cout << "★★★✩✩";
+	}
+	else if (x > 1)
+	{
+		cout << "★★✩✩✩";
+	}
+	else
+	{
+		cout << "★✩✩✩✩";
+	}
+
 }
 
 #endif

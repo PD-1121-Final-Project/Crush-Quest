@@ -4,93 +4,23 @@
 #include "../Characters/Admirer.h"
 #include "../Characters/Personality.h"
 #include "../Scene_Action/Function.h"
-#include "../jsonToString.h"
+#include "../Event/ActionEvent.h"
+#include "../Item/Item.h"
+#include "../Event/Event.h"
 #include "Action.h"
-#include <chrono>
 #include <iostream>
-#include <json/json.h>
 #include <sstream>
 #include <string>
-#include <thread>
 
 using namespace std;
 
-class Event {
-    friend class Scene;
-
-  private:
-    string dialogs;
-    Action** actionChoice;
-    int actionChoiceCnt;
-
-  public:
-    Event(string dialogs, Action** actionChoice, int actionChoiceCnt) {
-        this->dialogs = dialogs;
-        this->actionChoice = actionChoice;
-        this->actionChoiceCnt = actionChoiceCnt;
-    }
-
-    Event(Json::Value eventObj) {
-        this->dialogs = JsonToString(eventObj["dialogs"]);
-        this->actionChoiceCnt = eventObj["actions"].size();
-        this->actionChoice = new Action*[this->actionChoiceCnt];
-
-        for (int j = 0; j < this->actionChoiceCnt; j++) {
-            Json::Value actionObj = eventObj["actions"][j];
-
-            Personality updateScore = {actionObj["updateScore"][0].asDouble(),
-                                       actionObj["updateScore"][1].asDouble(),
-                                       actionObj["updateScore"][2].asDouble(),
-                                       actionObj["updateScore"][3].asDouble(),
-                                       actionObj["updateScore"][4].asDouble()};
-            this->actionChoice[j] =
-                new Action(JsonToString(actionObj["description"]),
-                           actionObj["actionCoef"].asDouble(), updateScore,
-                           JsonToString(actionObj["response"]));
-        }
-    }
-
-    ~Event() {
-        for (int i = 0; i < this->actionChoiceCnt; i++) {
-            delete this->actionChoice[i];
-        }
-        delete[] this->actionChoice;
-    }
-    void printDialogs() {
-        termios orig_termios;
-        tcgetattr(STDIN_FILENO, &orig_termios);
-        slowPrint(dialogs, &orig_termios);
-        this_thread::sleep_for(chrono::milliseconds(500));
-    }
-
-    void printActionChoices() {
-        if (actionChoiceCnt > 0) {
-            cout << endl;
-            cout << ">>"
-                 << "\n";
-            cout << endl;
-
-            for (int i = 0; i < actionChoiceCnt; i++) {
-                cout << "(" << i + 1 << ") ";
-                actionChoice[i]->printDescription();
-                cout << "\n";
-            }
-        }
-    }
-    void printDecision(int actionNum) {
-        cout << "\n";
-        cout << "你：";
-        actionChoice[actionNum]->printDescription();
-    }
-};
-
 class Scene {
-    friend class Event;
+    friend class ActionEvent;
 
   protected:
     string name;
     string introduction;
-    Event** events;
+    ActionEvent** events;
     int eventCnt;
 
     // Functions
@@ -105,6 +35,6 @@ class Scene {
     void happen();
     void act(Admirer player, Personality& updateScore, double& actionCoef);
     void printEvent(int eventIndex);
-    Event* getCurrentEvent(int eventIndex);
+    ActionEvent* getCurrentEvent(int eventIndex);
 };
 #endif

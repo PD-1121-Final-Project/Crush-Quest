@@ -8,6 +8,7 @@ using namespace std;
 #include "../include/Scene_Action/Function.h"
 #include "../include/Scene_Action/Scene.h"
 #include "../include/jsonToString.h"
+#include "../include/Event/ActionEvent.h"
 #include <chrono>
 #include <json/json.h>
 #include <termios.h>
@@ -19,10 +20,10 @@ Scene::Scene(string name, Json::Value sceneObj) {
     this->introduction = JsonToString(sceneObj["introduction"]);
 
     this->eventCnt = sceneObj["events"].size();
-    this->events = new Event*[this->eventCnt];
+    this->events = new ActionEvent*[this->eventCnt];
     for (int i = 0; i < this->eventCnt; i++) {
         Json::Value eventObj = sceneObj["events"][i];
-        this->events[i] = new Event(sceneObj["events"][i]);
+        this->events[i] = new ActionEvent(sceneObj["events"][i]);
     }
 }
 
@@ -50,7 +51,7 @@ void Scene::happen() {
     slowPrint(this->introduction);
 }
 
-Event* Scene::getCurrentEvent(int eventIndex) {
+ActionEvent* Scene::getCurrentEvent(int eventIndex) {
     // TODO : get current event
     return this->events[eventIndex];
 }
