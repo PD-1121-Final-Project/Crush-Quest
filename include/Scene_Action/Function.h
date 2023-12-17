@@ -11,6 +11,8 @@ void slowPrint(string s, termios* orig_termios = nullptr);
 void sleep(int ms);
 void rangePrint(double x);
 void printDashedLine();
+void enableRawMode(termios& orig_termios);
+void disableRawMode(termios& orig_termios);
 double mapLuckToRandomRatio(int luck);
 
 #endif // FUNCTION_H
