@@ -6,7 +6,7 @@
 using namespace std;
 
 Enemy::Enemy(const std::string& name, Personality attributes)
-    : Character(name, attributes) {}
+    : Character(name, attributes) {impression = 100;}
 
 Enemy::~Enemy() {}
 
@@ -19,4 +19,16 @@ void Enemy::attack(Crush& crush, Admirer& admirer) {
 
     // delete chosen attack event
     attackEvents.erase(attackEvents.begin() + randomIdx);
+}
+void Enemy::printImpre()
+{
+    cout << impression;
+}
+void Enemy::update(Personality a, double impressionIncre)
+{
+    impression += impressionIncre;
+}
+double Enemy::getImpression()
+{
+    return impression;
 }

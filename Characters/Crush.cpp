@@ -28,3 +28,7 @@ void Crush::printImpre()
 {
     cout << this ->impression;
 }
+double Crush::getImpre()
+{
+    return impression;
+}

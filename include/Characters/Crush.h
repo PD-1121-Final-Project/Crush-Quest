@@ -24,6 +24,7 @@ class Crush : public Character {
     void update(Personality newAttributes, double impressionIncre = 0);
     void corUpdate(Personality admirerAtt, double actionCoef);
     void printImpre();
+    double getImpre();
 };
 
 #endif // CRUSH_H
