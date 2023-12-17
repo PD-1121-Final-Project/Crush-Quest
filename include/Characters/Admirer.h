@@ -20,9 +20,8 @@ class Admirer : public Character {
     ~Admirer();
     void print();
     void update(Personality newAttributes);
-    Personality getAttributes() const {return attributes;}
-  
-  friend class Crush;
+
+    friend class Crush;
 };
 
 #endif // ADMIRER_H

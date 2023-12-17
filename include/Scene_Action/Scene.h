@@ -3,10 +3,10 @@
 
 #include "../Characters/Admirer.h"
 #include "../Characters/Personality.h"
-#include "../Scene_Action/Function.h"
 #include "../Event/ActionEvent.h"
-#include "../Item/Item.h"
 #include "../Event/Event.h"
+#include "../Item/Item.h"
+#include "../Scene_Action/Function.h"
 #include "Action.h"
 #include <iostream>
 #include <sstream>
@@ -22,9 +22,6 @@ class Scene {
     string introduction;
     ActionEvent** events;
     int eventCnt;
-
-    // Functions
-    Personality getResult(Admirer player, Action a);
 
   public:
     // Constructors

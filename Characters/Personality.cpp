@@ -1,50 +1,39 @@
 #include "../include/Characters/Personality.h"
 #include "../include/Scene_Action/Function.h"
-#include <iostream>
 #include <cmath>
+#include <iostream>
 using namespace std;
 
 void Personality::print() {
-    cout << "| wealth: "; flush(cout);
-    sleep(400);
-	rangePrint(wealth);
-	cout << " | ";
-    flush(cout);
-	
-    sleep(400);
-    cout << "intelligence: "; flush(cout);
-    sleep(400);
+    cout << "| wealth: ";
+
+    rangePrint(wealth);
+    cout << " | ";
+
+    cout << "intelligence: ";
+
     rangePrint(iq);
     cout << " | ";
-    flush(cout);
-	
-    sleep(400);
-    cout << "physical: "; flush(cout);
-    sleep(400);
-	rangePrint(physical) ;
-	cout << " | ";
-    flush(cout);
-	
-    sleep(400);
-    cout << "talent: "; flush(cout);
-    sleep(400);
+
+    cout << "physical: ";
+
+    rangePrint(physical);
+    cout << " | ";
+
+    cout << "talent: ";
+
     rangePrint(talent);
     cout << " | ";
-    flush(cout);
 
-	sleep(400);
-    cout << "appearance: "; flush(cout);
-    sleep(400);
+    cout << "appearance: ";
+
     rangePrint(appearance);
     cout << " | ";
-    flush(cout);
 
-	sleep(400);
-    cout << "luck: "; flush(cout);
-    sleep(400);
+    cout << "luck: ";
+
     rangePrint(luck);
     cout << " |";
-    flush(cout);
 
     cout << endl;
 }
