@@ -117,14 +117,21 @@ void Game::init() {
               "全知全能\n（請輸入數字不需加點）");
 
     do {
-        if (!(cin >> choice)) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "似乎打成不合規定的輸入，請再試一次\n\n";
-        } else if (choice < 1 || choice > 7) {
-            cout << "似乎打成不合規定的輸入，請再試一次\n\n";
-        } else {
-            break;
+        try {
+            if (!(std::cin >> choice)) {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),
+                                '\n');
+                throw std::runtime_error(
+                    "似乎打成不合規定的輸入，請再試一次\n\n");
+            } else if (choice < 1 || choice > 7) {
+                throw std::runtime_error(
+                    "似乎打成不合規定的輸入，請再試一次\n\n");
+            } else {
+                break; // 如果輸入有效，跳出循環
+            }
+        } catch (const std::runtime_error& e) {
+            std::cout << e.what();
         }
     } while (true);
 

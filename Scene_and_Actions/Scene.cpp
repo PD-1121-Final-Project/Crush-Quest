@@ -65,15 +65,22 @@ void Scene::act(Admirer player, Personality& updateScore, double& actionCoef) {
             int actionDecision_cin;
             // get player input
             do {
-                if (!(cin >> actionDecision_cin)) {
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    cout << "似乎打成不合規定的輸入，請再試一次\n\n";
-                } else if (actionDecision_cin < 1 ||
-                           actionDecision_cin > actionCnt) {
-                    cout << "似乎打成不合規定的輸入，請再試一次\n\n";
-                } else {
-                    break;
+                try {
+                    if (!(std::cin >> actionDecision_cin)) {
+                        std::cin.clear();
+                        std::cin.ignore(
+                            std::numeric_limits<std::streamsize>::max(), '\n');
+                        throw std::runtime_error(
+                            "似乎打成不合規定的輸入，請再試一次\n\n");
+                    } else if (actionDecision_cin < 1 ||
+                               actionDecision_cin > actionCnt) {
+                        throw std::runtime_error(
+                            "似乎打成不合規定的輸入，請再試一次\n\n");
+                    } else {
+                        break; // 如果輸入有效，跳出循環
+                    }
+                } catch (const std::runtime_error& e) {
+                    std::cout << e.what();
                 }
             } while (true);
 
