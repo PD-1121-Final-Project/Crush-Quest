@@ -8,6 +8,7 @@ using namespace std;
 #include "../include/Scene_Action/Function.h"
 #include "../include/Scene_Action/Scene.h"
 #include "../include/jsonToString.h"
+#include "../include/Event/ActionEvent.h"
 #include <chrono>
 #include <json/json.h>
 #include <termios.h>
@@ -19,10 +20,10 @@ Scene::Scene(string name, Json::Value sceneObj) {
     this->introduction = JsonToString(sceneObj["introduction"]);
 
     this->eventCnt = sceneObj["events"].size();
-    this->events = new Event*[this->eventCnt];
+    this->events = new ActionEvent*[this->eventCnt];
     for (int i = 0; i < this->eventCnt; i++) {
         Json::Value eventObj = sceneObj["events"][i];
-        this->events[i] = new Event(sceneObj["events"][i]);
+        this->events[i] = new ActionEvent(sceneObj["events"][i]);
     }
 }
 
@@ -50,6 +51,11 @@ void Scene::happen() {
     slowPrint(this->introduction);
 }
 
+ActionEvent* Scene::getCurrentEvent(int eventIndex) {
+    // TODO : get current event
+    return this->events[eventIndex];
+}
+
 void Scene::printEvent(int eventIndex) {
     // print event
     // Store original terminal settings
@@ -59,45 +65,51 @@ void Scene::printEvent(int eventIndex) {
 
 void Scene::act(Admirer player, Personality& updateScore, double& actionCoef) {
     for (int i = 0; i < this->eventCnt; i++) {
-        cout << "\n";
         slowPrint("...");
+        cout << "\n";
         this->printEvent(i);
 
-        int actionDecision_cin;
-        // get player input
-        do {
-            if (!(cin >> actionDecision_cin)) {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
-            } else if (actionDecision_cin < 1 || actionDecision_cin > 3) {
-                slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
-            } else {
-                break;
-            }
-        } while (true);
+        // get player inpu
+        int actionCnt = this->getCurrentEvent(i)->actionChoiceCnt;
 
-        // change input index
-        actionDecision_cin -= 1;
+        if (actionCnt > 0) {
 
-        // print player decision
-        this->events[i]->printDecision(actionDecision_cin);
+            int actionDecision_cin;
+            // get player input
+            do {
+                if (!(cin >> actionDecision_cin)) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+                } else if (actionDecision_cin < 1 || actionDecision_cin > 3) {
+                    slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+                } else {
+                    break;
+                }
+            } while (true);
 
-        cout << "\n";
+            // change input index
+            actionDecision_cin -= 1;
 
-        // print action response
-        slowPrint(
-            this->events[i]->actionChoice[actionDecision_cin]->getResponse());
+            // print player decision
+            this->events[i]->printDecision(actionDecision_cin);
 
-        cout << "\n";
+            cout << "\n";
 
-        cout << "今天就這樣結束了...";
+            // print action response
+            slowPrint(this->events[i]
+                          ->actionChoice[actionDecision_cin]
+                          ->getResponse());
 
-        // get action object
-        Action chosenAction =
-            *(this->events[i]->actionChoice[actionDecision_cin]);
-        // get result
-        updateScore += this->getResult(player, chosenAction);
-        actionCoef += chosenAction.getCoef();
+            // get action object
+            Action chosenAction =
+                *(this->events[i]->actionChoice[actionDecision_cin]);
+            // get result
+            updateScore += this->getResult(player, chosenAction);
+            actionCoef += chosenAction.getCoef();
+        }
     }
+
+    cout << "\n";
+    cout << "今天就這樣結束了...";
 }
