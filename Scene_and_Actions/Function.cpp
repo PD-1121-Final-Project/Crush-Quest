@@ -57,7 +57,7 @@ void slowPrint(string statement, termios* orig_termios) {
     for (char character : statement) {
         cout << character;
         this_thread::sleep_for(
-            chrono::milliseconds(1)); // Adjust delay time as needed
+            chrono::milliseconds(35)); // Adjust delay time as needed
         flush(cout);
 
         if (character == '\n' && orig_termios != nullptr) {

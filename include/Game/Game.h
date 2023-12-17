@@ -19,13 +19,10 @@
 #include <string>
 #include <thread> // 新增的頭文件
 #include <vector>
-<<<<<<< HEAD
-=======
 #include "../Characters/Enemy.h"
 #include "../Item/Item.h"
 #include "../Scene_Action/Function.h"
 #include "../Scene_Action/Scene.h"
->>>>>>> main using namespace std;
 
 class Game {
   private:
@@ -48,6 +45,8 @@ class Game {
     void printCrush();
     void gainItem();
     void printItems();
+    int getNonZeroItemCnt(); // 取得非零道具數量
+    vector<Item*> getNonZeroItems();
 
     friend class Event; // 取得遊戲中的道具
 };
