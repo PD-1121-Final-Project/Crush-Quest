@@ -24,14 +24,22 @@ public:
 };
 */
 
-Action::Action(string description, double actionCoef, Personality updateScore,string response) {
+Action::Action(string description, double actionCoef, Personality updateScore,
+               string response) {
     this->description = description;
     this->actionCoef = actionCoef;
     this->updateScore = updateScore;
     this->response = response;
 }
 
-void Action::printDescription() const { cout << this->description; }
+void Action::printDescription() const {
+    string statement = this->description;
+    // Remove the first and last character if they are quotes
+    if (statement.front() == '"' && statement.back() == '"') {
+        statement = statement.substr(1, statement.size() - 2);
+    }
+    cout << statement;
+}
 
 Action::~Action() {}
 
