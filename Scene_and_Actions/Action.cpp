@@ -24,9 +24,10 @@ public:
 };
 */
 
-Action::Action(string description, double actionCoef, string response) {
+Action::Action(string description, double actionCoef, Personality updateScore,string response) {
     this->description = description;
     this->actionCoef = actionCoef;
+    this->updateScore = updateScore;
     this->response = response;
 }
 

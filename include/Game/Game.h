@@ -3,29 +3,31 @@
 #ifndef GAME_H
 #define GAME_H
 // #include "include/Characters/Admirer.h"
+#include "../Characters/Admirer.h"
+#include "../Characters/Character.h"
 #include "../Characters/Crush.h"
+#include "../Characters/Personality.h"
+#include "../Item/Item.h"
+#include "../Scene_Action/Function.h"
 #include "../Scene_Action/Scene.h"
 #include "../jsonToString.h"
+#include <chrono> // 新增的頭文件
 #include <fstream>
-#include <json/json.h>
 #include <iostream>
+#include <json/json.h>
+#include <stdexcept>
 #include <string>
-#include <stdexcept> 
-#include <chrono>  // 新增的頭文件
-#include <thread>  // 新增的頭文件
-#include "../Characters/Personality.h"
-#include "../Characters/Character.h"
-#include "../Characters/Admirer.h"
+#include <thread> // 新增的頭文件
 #include <vector>
 #include "../Item/Item.h"
 #include "../Scene_Action/Scene.h"
 #include "../Scene_Action/Function.h"
 using namespace std;
 
-class Game 
-{
-private :
+class Game {
+  private:
     int day;
+    int dayCnt;
     Admirer* player;
     Crush* crush1;
     vector <Item*> items;
@@ -37,7 +39,7 @@ public :
     void dayContinue();//每天循環
     void gameEnd();//遊戲結束
 
-    void nextScene();//切換至下一個場景（一天結束）
+    void nextScene(); // 切換至下一個場景（一天結束）
     void printCrush();
     void gainItem();
     void printItems();
