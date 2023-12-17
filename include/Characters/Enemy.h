@@ -22,7 +22,7 @@ class Enemy : public Character {
     Enemy(const std::string& name, Personality attributes);
     ~Enemy();
     Personality getAttributes() const {return attributes;}
-    void attack(Crush& crush, Admirer& admirer);
+    void attack(Crush& crush, Admirer& admirer, Item** items, int itemCnt);
   
   friend class Admirer;
   friend class Crush;

@@ -10,7 +10,7 @@ class ItemEvent : public Event {
 
   public:
     ItemEvent(string dialogs, Item** itemChoice, int itemChoiceCnt);
-    ItemEvent(Json::Value eventObj);
+    // ItemEvent(Json::Value eventObj);
     ~ItemEvent();
 };
 
