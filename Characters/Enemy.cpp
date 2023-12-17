@@ -13,13 +13,15 @@ Enemy::~Enemy() {}
 
 void Enemy::attack(Crush& crush, Admirer& admirer, vector<Item*> items, int itemCnt) {
     // initialize item event
-    int randomIdx = rand() % 2;
+    int randomIdx = rand() % attackEvents.size();
     ItemEvent itemEvent = ItemEvent(attackEvents[randomIdx], items, itemCnt);
 
     slowPrint("\n\nϟ\\ϟ\\ϟ 情敵警報！ϟ/ϟ/ϟ\n");
     slowPrint(attackEvents[randomIdx]);
-    slowPrint("情敵的攻擊將會使你的印象值下降，但你可以使用道具來抵擋或是反擊！\n");
+    
     if (itemCnt > 0) {
+        slowPrint("情敵的攻擊將會使你的印象值下降，但你可以使用道具來抵擋或是反擊！\n");
+
         int itemDecision_cin = 0, targetDecision_cin = 0;
         itemEvent.startEvent(itemDecision_cin, targetDecision_cin);
 
@@ -38,6 +40,9 @@ void Enemy::attack(Crush& crush, Admirer& admirer, vector<Item*> items, int item
             items[itemDecision_cin]->usingItemTo(&admirer);
             break;  
         }
+    }
+    else {
+        slowPrint("你受到了情敵的攻擊，但你目前沒有道具可以使用...\n繼續加油，爭取下次擊敗他！\n");
     }
 
     // delete chosen attack event
