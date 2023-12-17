@@ -81,7 +81,8 @@ void Scene::act(Admirer player, Personality& updateScore, double& actionCoef) {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
-                } else if (actionDecision_cin < 1 || actionDecision_cin > 3) {
+                } else if (actionDecision_cin < 1 ||
+                           actionDecision_cin > actionCnt) {
                     slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
                 } else {
                     break;
@@ -109,7 +110,4 @@ void Scene::act(Admirer player, Personality& updateScore, double& actionCoef) {
             actionCoef += chosenAction.getCoef();
         }
     }
-
-    cout << "\n";
-    cout << "今天就這樣結束了...";
 }
