@@ -2,6 +2,7 @@
 #include "../include/Characters/Personality.h"
 #include "../include/Item/Item.h"
 #include "../include/Characters/Character.h"
+#include "../include/Scene_Action/Function.h"
 using namespace std;
 
 
@@ -16,9 +17,11 @@ void Item::print()
 void Item::gainThisItem()
 {
     itemNum++;
+    slowPrint ("-------------------------------------------------------\n" + getContent + "\n-------------------------------------------------------\n");
 }
 void Item::usingItemTo(Character* object)
 {
     itemNum--; 
     object -> update(this -> increaseRate, this ->impressionIncre);
+    slowPrint(object->getName() + printContent);
 }
