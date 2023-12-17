@@ -114,6 +114,9 @@ void Game::dayContinue() {
     // Get day count
     this->day = sceneObj.size();
 
+    cout << "初始：";
+    player->getPersonality().printRaw();
+    cout << endl;
     // 建立今天的場景
     for (int i = 0; i < day; i++) {
 
@@ -133,7 +136,7 @@ void Game::dayContinue() {
         scene1.act(*player, updateScore, actionCoef);
 
         player->update(updateScore); // 依照結果升級
-        crush1->update(player->getAttributes(), actionCoef);
+        crush1->update(player->getPersonality(), actionCoef);
 
         if (i % 3 == 0 && i != 0) {
             cout << "\n今天是你與她相識的第" << i * 6 << "天" << endl;
