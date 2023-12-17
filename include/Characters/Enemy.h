@@ -8,6 +8,7 @@
 #include "Admirer.h"
 #include "Personality.h"
 #include <iostream>
+#include <vector>
 #include <string>
 using namespace std;
 
@@ -15,7 +16,7 @@ class Enemy : public Character {
   private:
     // Attributes specific to Enemy
     // attack events (string array )
-    string attackEvents[2] = {"情敵到處說你的壞話", "情敵搶先約暗戀對象去看流星雨"};
+    vector <string> attackEvents = {"情敵到處說你的壞話", "情敵搶先約暗戀對象去看流星雨"};
 
   public:
     Enemy(const std::string& name, Personality attributes);
