@@ -10,5 +10,5 @@ Enemy::Enemy(const std::string& name, Personality attributes)
 Enemy::~Enemy() {}
 
 void Enemy::attack(Crush& crush, Admirer& admirer) {
-    cout << "✸攻擊事件發生！✸";
+    cout << "情敵警報！✸";
 }
