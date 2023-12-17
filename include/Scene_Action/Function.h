@@ -9,5 +9,6 @@ using namespace std;
 void slowPrint(string s, termios* orig_termios = nullptr);
 void sleep(int ms);
 void rangePrint(double x);
+double mapLuckToRandomRatio(int luck);
 
 #endif // FUNCTION_H

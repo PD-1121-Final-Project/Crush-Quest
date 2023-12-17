@@ -3,28 +3,28 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
+#include "Admirer.h"
 #include "Character.h"
 #include "Crush.h"
-#include "Admirer.h"
 #include "Personality.h"
 #include "../Item/Item.h"
 #include <iostream>
-#include <vector>
 #include <string>
+#include <vector>
 using namespace std;
 
 class Enemy : public Character {
   private:
-    // Attributes specific to Enemy
-    // attack events (string array )
+    double impression;
     vector <string> attackEvents = {"情敵到處說你的壞話", "情敵搶先約暗戀對象去看流星雨"};
 
   public:
     Enemy(const std::string& name, Personality attributes);
     ~Enemy();
-    Personality getAttributes() const {return attributes;}
-    void attack(Crush& crush, Admirer& admirer, Item** items, int itemCnt);
-  
+    void attack(Crush& crush, Admirer& admirer, vector<Item*> items, int itemCnt);
+    void update(Personality a, double impressionIncre);
+    void printImpre();
+    double getImpression();
   friend class Admirer;
   friend class Crush;
 };

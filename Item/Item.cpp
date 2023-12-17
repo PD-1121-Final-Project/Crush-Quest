@@ -17,10 +17,12 @@ void Item::gainThisItem()
 {
     itemNum++;
 }
-void Item::usingItemTo(Character&)
+void Item::usingItemTo(Character* object)
 {
-    itemNum--;
+    itemNum--; 
+    object -> update(this -> increaseRate, this ->impressionIncre);
 }
+
 void Item::printName()
 {
     cout << itemName;

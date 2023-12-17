@@ -22,6 +22,7 @@
 #include "../Item/Item.h"
 #include "../Scene_Action/Scene.h"
 #include "../Scene_Action/Function.h"
+#include "../Characters/Enemy.h"
 using namespace std;
 
 class Game {
@@ -30,6 +31,7 @@ class Game {
     int dayCnt;
     Admirer* player;
     Crush* crush1;
+    Enemy* enemy;
     vector <Item*> items;
     vector <Scene> Scenes;
 public :
@@ -43,6 +45,7 @@ public :
     void printCrush();
     void gainItem();
     void printItems();
+    int getNonZeroItemCnt(); // 取得非零道具數量
 
 friend class Event; //取得遊戲中的道具
 };

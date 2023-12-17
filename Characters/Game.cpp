@@ -11,11 +11,47 @@
 #include <string>
 #include <thread> // 新增的頭文件
 #include <vector>
+#include <random>
+
 using namespace std;
 Game::Game() : player(nullptr), day(0) {
     // wealth iq; physical; talent appearance; luck
-    Personality attributes = {2, 0, 0, 2, 4, 1};
-    crush1 = new Crush("小美", attributes);
+    Personality attribute;
+    //以下為隨機挑一個小美的理想型
+    
+    random_device rd;
+    mt19937 gen(rd());
+
+    // 定義一個均勻分佈，範圍為 1 到 5
+    uniform_int_distribution<int> distribution(1, 5);
+
+    // 生成隨機數
+    int randomNumber = distribution(gen);
+    switch (randomNumber) {
+    case 1:
+        attribute = {4, 0, 0, 0, 2, 2};
+        break;
+    case 2:
+        attribute = {0, 0, 4, 2, 2, 1};
+        break;
+    case 3:
+        attribute = {0, 4, 0, 2, 2, 1};
+        break;
+    case 4:
+        attribute = {2, 0, 0, 2, 4, 1};
+        break;
+    case 5:
+        attribute = {0, 2, 0, 4, 2, 1};
+        break;
+    default:
+        attribute = {0, 0, 0, 0, 0, 0};
+        break;
+    }
+
+    // 打印結果
+
+    crush1 = new Crush("小美", attribute);
+    enemy = new Enemy("小強", attribute);
     Personality luckPotionChange = {0, 0, 0, 0, 0, 1};
     Personality steroidChange = {0, 0, 1, 0, 0, 0};
     Personality smartMedChange = {0, 1, 0, 0, 0, 0};
@@ -41,6 +77,8 @@ Game::~Game() {
         delete items[i];
         items[i] = nullptr;
     }
+    delete enemy;
+    enemy = nullptr;
 };
 void Game::init() {
     int choice;
@@ -56,9 +94,9 @@ void Game::init() {
         if (!(cin >> choice)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+            cout << "似乎打成不合規定的輸入，請再試一次\n\n";
         } else if (choice < 1 || choice > 7) {
-            slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+            cout << "似乎打成不合規定的輸入，請再試一次\n\n";
         } else {
             break;
         }
@@ -95,7 +133,8 @@ void Game::init() {
     cin >> name;
 
     player = new Admirer(name, attribute);
-    player->print();
+    crush1 -> print();
+
 }
 void Game::dayContinue() {
     std::ifstream scene_json("./Scene_and_Actions/scene.json",
@@ -114,11 +153,17 @@ void Game::dayContinue() {
     // Get day count
     this->day = sceneObj.size();
 
+    cout << "初始：";
+    player->getPersonality().printRaw();
+    cout << endl;
     // 建立今天的場景
     for (int i = 0; i < day; i++) {
 
         if (i == 0) {
             cout << "\n今天是你與她相識的第" << i + 1 << "天" << endl;
+        }
+        else if (i % 3 == 0 && i != 0) {
+            cout << "\n今天是你與她相識的第" << i * 6 << "天" << endl;
         }
 
         Scene scene1("Library", sceneObj[i]); // 活大、圖書館、教室、宿舍
@@ -133,11 +178,13 @@ void Game::dayContinue() {
         scene1.act(*player, updateScore, actionCoef);
 
         player->update(updateScore); // 依照結果升級
-        crush1->update(player->getAttributes(), actionCoef);
+        crush1->corUpdate(player->getAttributes(), actionCoef);
 
-        if (i % 3 == 0 && i != 0) {
-            cout << "\n今天是你與她相識的第" << i * 6 << "天" << endl;
+        // 情敵攻擊事件
+        if (i > 5){
+            enemy->attack(*crush1, *player, items, this->getNonZeroItemCnt());
         }
+
     }
 
     // 印出結果
@@ -148,9 +195,16 @@ void Game::dayContinue() {
 }
 void Game::nextScene() {}
 void Game::gameEnd() {
-    slowPrint("你認為時機成熟了，決定放手一博，向暗戀對象告白。");
-    double end = player->getPersonality().getCorr(crush1->getPersonality());
-    cout << end;
+    slowPrint("你認為時機成熟了，決定放手一博，向暗戀對象告白。\n\n\n---你將小美約到醉月湖畔---\n\n\n你：小美，我其實...\n暗戀你很久了。\n你:..願意和我交往嗎？\n小美：...\n這..這麼突然");
+    if(enemy->getImpression() <= crush1->getImpre())
+    {
+        slowPrint("其實我也喜歡你，哈哈。遊戲結束");
+    }
+    else
+    {
+        slowPrint("我討厭你！遊戲結束");
+    }
+    crush1 -> print();
 }
 void Game::printCrush() { crush1->print(); }
 
@@ -159,4 +213,14 @@ void Game::printItems() {
     for (int i = 0; i < items.size(); i++) {
         items[i]->print();
     }
+}
+
+int Game::getNonZeroItemCnt() {
+    int cnt = 0;
+    for (int i = 0; i < items.size(); i++) {
+        if (items[i]->getItemNum() > 0) {
+            cnt++;
+        }
+    }
+    return cnt;
 }

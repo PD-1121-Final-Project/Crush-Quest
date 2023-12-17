@@ -2,14 +2,15 @@
 #define ITEMEVENT_H
 
 #include "Event.h"
+#include <vector>
 
 class ItemEvent : public Event {
   private:
-    Item** itemChoice;
+    vector<Item*> itemChoice;
     int itemChoiceCnt;
 
   public:
-    ItemEvent(string dialogs, Item** itemChoice, int itemChoiceCnt);
+    ItemEvent(string dialogs, vector<Item*> itemChoice, int itemChoiceCnt);
     // ItemEvent(Json::Value eventObj);
     ~ItemEvent();
     void printItemChoices();

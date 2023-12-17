@@ -20,6 +20,8 @@ class Character {
     ~Character() {};
     void print();
     Personality getPersonality() {return attributes;};
+    virtual void update(Personality admirerAtt, double impressionIncre = 0) = 0; 
+
 
     // // Virtual methods that can be overridden by child classes
     // virtual void displayAffection() = 0;

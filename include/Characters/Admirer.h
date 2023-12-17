@@ -19,7 +19,7 @@ class Admirer : public Character {
     Admirer(const std::string& name, Personality attributes);
     ~Admirer();
     void print();
-    void update(Personality newAttributes);
+    void update(Personality newAttributes, double impressionIncre = 0);
     Personality getAttributes() const {return attributes;}
   
   friend class Crush;
