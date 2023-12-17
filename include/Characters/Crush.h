@@ -12,7 +12,7 @@ using namespace std;
 class Crush : public Character {
   private:
     // Attributes specific to Crush
-    double love = 0;
+    double impression = 0;
 
   public:
     // // Constructor and destructor
@@ -21,7 +21,10 @@ class Crush : public Character {
 
     // // Overridden method from Character
     void print();
-    void update(Personality admirerAtt, double actionCoef);
+    void update(Personality newAttributes, double impressionIncre = 0);
+    void corUpdate(Personality admirerAtt, double actionCoef);
+    void printImpre();
+    double getImpre();
 };
 
 #endif // CRUSH_H

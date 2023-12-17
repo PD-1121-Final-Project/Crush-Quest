@@ -11,5 +11,6 @@ void slowPrint(string s, termios* orig_termios = nullptr);
 void sleep(int ms);
 void rangePrint(double x);
 void printDashedLine();
+double mapLuckToRandomRatio(int luck);
 
 #endif // FUNCTION_H

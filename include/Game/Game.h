@@ -19,7 +19,13 @@
 #include <string>
 #include <thread> // 新增的頭文件
 #include <vector>
-using namespace std;
+<<<<<<< HEAD
+=======
+#include "../Characters/Enemy.h"
+#include "../Item/Item.h"
+#include "../Scene_Action/Function.h"
+#include "../Scene_Action/Scene.h"
+>>>>>>> main using namespace std;
 
 class Game {
   private:
@@ -27,6 +33,7 @@ class Game {
     int dayCnt;
     Admirer* player;
     Crush* crush1;
+    Enemy* enemy;
     vector<Item*> items;
     vector<Scene> Scenes;
 

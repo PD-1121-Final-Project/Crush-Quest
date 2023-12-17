@@ -9,6 +9,8 @@
 #include <termios.h>
 #include <thread>
 #include <unistd.h>
+#include <cmath>
+#include <random>
 using namespace std;
 
 void printDashedLine() {
@@ -91,5 +93,33 @@ void rangePrint(double x) {
         cout << "★✩✩✩✩";
     }
 }
+
+
+// 函數返回一個介於 0 到 1 之間的值，斜率隨著輸入值增加而逐漸遞減，並加入隨機性
+double mapLuckToRandomRatio(int luck) {
+    // 調整這個值以達到適合的遞減速度
+    double decayFactor = 0.7;
+
+    // 映射到 0 到 1 之間的範圍
+    double mappedValue = luck / 5.0;
+
+    // 遞減斜率
+    double decayedValue = 1.0 - exp(-decayFactor * luck);
+
+    // 加入隨機性
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_real_distribution<double> randomDist(-0.1, 0.1); // 調整這個範圍以控制隨機性的強度
+    double randomValue = randomDist(gen);
+
+    // 最終映射值，加入隨機性
+    double result = mappedValue * decayedValue + randomValue;
+
+    // 將結果限制在 0 到 1 之間
+    result = max(0.0, min(1.0, result));
+
+    return result;
+};
+
 
 #endif
