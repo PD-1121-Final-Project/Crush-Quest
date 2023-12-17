@@ -53,10 +53,10 @@ void ItemEvent::startEvent(int& itemDecision_cin, int& targetDecision_cin) {
         if (!(cin >> targetDecision_cin)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+            cout << "似乎打成不合規定的輸入，請再試一次\n\n";
         } else if (targetDecision_cin < 1 ||
                     targetDecision_cin > 3) {
-            slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+            cout << "似乎打成不合規定的輸入，請再試一次\n\n";
         } else {
             break;
         }
