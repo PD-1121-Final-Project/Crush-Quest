@@ -29,6 +29,7 @@ class Event {
         this->actionChoice = actionChoice;
         this->actionChoiceCnt = actionChoiceCnt;
     }
+
     Event(Json::Value eventObj) {
         this->dialogs = JsonToString(eventObj["dialogs"]);
         this->actionChoiceCnt = eventObj["actions"].size();
@@ -61,20 +62,25 @@ class Event {
         slowPrint(dialogs, &orig_termios);
         this_thread::sleep_for(chrono::milliseconds(500));
     }
-    void printActionChoices() {
-        cout << "你可以選擇:"
-             << "\n";
 
-        for (int i = 0; i < actionChoiceCnt; i++) {
-            cout << "(" << i + 1 << ") ";
-            actionChoice[i]->printDescription();
-            cout << "\n";
+    void printActionChoices() {
+        if (actionChoiceCnt > 0) {
+            cout << endl;
+            cout << ">>"
+                 << "\n";
+            cout << endl;
+
+            for (int i = 0; i < actionChoiceCnt; i++) {
+                cout << "(" << i + 1 << ") ";
+                actionChoice[i]->printDescription();
+                cout << "\n";
+            }
         }
     }
     void printDecision(int actionNum) {
-        cout << "你選擇: ";
-        actionChoice[actionNum]->printDescription();
         cout << "\n";
+        cout << "你：";
+        actionChoice[actionNum]->printDescription();
     }
 };
 
@@ -99,5 +105,6 @@ class Scene {
     void happen();
     void act(Admirer player, Personality& updateScore, double& actionCoef);
     void printEvent(int eventIndex);
+    Event* getCurrentEvent(int eventIndex);
 };
 #endif
