@@ -13,6 +13,20 @@
 #include <random>
 using namespace std;
 
+void printDashedLine() {
+
+    struct winsize size;
+    ioctl(STDOUT_FILENO, TIOCGWINSZ, &size);
+
+    int width = size.ws_col; // Get the number of columns in the terminal
+
+    cout << "\n";
+    for (int i = 0; i < width; ++i) {
+        std::cout << "-";
+    }
+    std::cout << std::endl;
+}
+
 // Function to set the terminal to raw mode
 void enableRawMode(termios& orig_termios) {
     termios raw = orig_termios;
@@ -66,29 +80,18 @@ void slowPrint(string statement, termios* orig_termios) {
 
 void sleep(int ms) { this_thread::sleep_for(chrono::milliseconds(ms)); }
 
-void rangePrint(double x)
-{
-	if(x > 4)
-	{
-		cout << "★★★★★";
-	}
-	else if(x > 3)
-	{
-		cout << "★★★★✩";
-	}
-	else if(x > 2)
-	{
-		cout << "★★★✩✩";
-	}
-	else if (x > 1)
-	{
-		cout << "★★✩✩✩";
-	}
-	else
-	{
-		cout << "★✩✩✩✩";
-	}
-
+void rangePrint(double x) {
+    if (x > 4) {
+        cout << "★★★★★";
+    } else if (x > 3) {
+        cout << "★★★★✩";
+    } else if (x > 2) {
+        cout << "★★★✩✩";
+    } else if (x > 1) {
+        cout << "★★✩✩✩";
+    } else {
+        cout << "★✩✩✩✩";
+    }
 }
 
 

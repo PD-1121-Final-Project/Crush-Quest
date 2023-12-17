@@ -177,6 +177,13 @@ void Game::dayContinue() {
         player->update(updateScore); // 依照結果升級
         crush1->corUpdate(player->getAttributes(), actionCoef);
 
+        // 印出結果
+        cout << "\n";
+        cout << "你目前的能力值是：";
+        player->getPersonality().print();
+
+        printDashedLine();
+
         if (i % 3 == 0 && i != 0) {
             cout << "\n今天是你與她相識的第" << i * 6 << "天" << endl;
         }
