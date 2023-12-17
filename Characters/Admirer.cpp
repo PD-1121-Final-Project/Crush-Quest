@@ -17,6 +17,6 @@ void Admirer::print() {
     cout << endl;
 }
 
-void Admirer::update(Personality newAttributes) {
+void Admirer::update(Personality newAttributes, double impressionIncre) {
     this->attributes += newAttributes;
 }
