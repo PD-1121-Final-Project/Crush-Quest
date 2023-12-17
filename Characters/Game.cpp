@@ -2,9 +2,8 @@
 #include "../include/Game/Game.h"
 #include "../include/Characters/Character.h"
 #include "../include/Characters/Personality.h"
-#include "../include/Item/Item.h"
-#include "../include/Characters/Character.h"
 #include "../include/Game/Game.h"
+#include "../include/Item/Item.h"
 #include "../include/Scene_Action/Function.h"
 #include <chrono> // 新增的頭文件
 #include <iostream>
@@ -13,43 +12,38 @@
 #include <thread> // 新增的頭文件
 #include <vector>
 using namespace std;
-Game::Game (): player(nullptr), day(0)
-{
-    //wealth iq; physical; talent appearance; luck
+Game::Game() : player(nullptr), day(0) {
+    // wealth iq; physical; talent appearance; luck
     Personality attributes = {2, 0, 0, 2, 4, 1};
     crush1 = new Crush("小美", attributes);
-    Personality luckPotionChange = {0,0,0,0,0,1};
-    Personality steroidChange = {0,0,1,0,0,0} ;
-    Personality smartMedChange = {0,1,0,0,0,0} ;
-    Personality makeUpChange = {0,0,0,0,1,0} ;
-    Personality moneyChange = {1,0,0,0,0,0} ;
-    Personality laxativeChange = {-0.5,-0.5,-0.5,-0.5,-0.5,-0.5};
-    Personality flowerChange = {0,0,0,0,0,0};
-    
-    
-    items.push_back(new Item("luckPotion", luckPotionChange, 2)); 
-    items.push_back(new Item("Steroid", steroidChange, 1)); 
-    items.push_back(new Item("smartMed", smartMedChange, 1)); 
-    items.push_back(new Item("makeUp", makeUpChange, 2)); 
-    items.push_back(new Item("money", moneyChange, 2)); 
-    items.push_back(new Item("laxative", laxativeChange, -10)); 
-    items.push_back(new Item("flower", flowerChange, 10)); 
+    Personality luckPotionChange = {0, 0, 0, 0, 0, 1};
+    Personality steroidChange = {0, 0, 1, 0, 0, 0};
+    Personality smartMedChange = {0, 1, 0, 0, 0, 0};
+    Personality makeUpChange = {0, 0, 0, 0, 1, 0};
+    Personality moneyChange = {1, 0, 0, 0, 0, 0};
+    Personality laxativeChange = {-0.5, -0.5, -0.5, -0.5, -0.5, -0.5};
+    Personality flowerChange = {0, 0, 0, 0, 0, 0};
+
+    items.push_back(new Item("luckPotion", luckPotionChange, 2));
+    items.push_back(new Item("Steroid", steroidChange, 1));
+    items.push_back(new Item("smartMed", smartMedChange, 1));
+    items.push_back(new Item("makeUp", makeUpChange, 2));
+    items.push_back(new Item("money", moneyChange, 2));
+    items.push_back(new Item("laxative", laxativeChange, -10));
+    items.push_back(new Item("flower", flowerChange, +10));
 }
-Game::~Game()
-{
-    delete player; 
-    player = nullptr; 
-    delete crush1; 
+Game::~Game() {
+    delete player;
+    player = nullptr;
+    delete crush1;
     crush1 = nullptr;
-    for(int i = 0; i < items.size(); i++)
-    {
+    for (int i = 0; i < items.size(); i++) {
         delete items[i];
         items[i] = nullptr;
     }
 };
-void Game::init()
-{
-    int choice ;
+void Game::init() {
+    int choice;
     Personality attribute;
 
     slowPrint("歡迎遊玩台大校園戀愛文字遊戲\n\n你是一位對校園充滿期待的大一新生"
@@ -124,7 +118,10 @@ void Game::dayContinue() {
     // 建立今天的場景
     for (int i = 0; i < day; i++) {
 
-        cout << "今天是你與她相識的第" << i << "天" << endl;
+        if (i == 0) {
+            cout << "\n今天是你與她相識的第" << i + 1 << "天" << endl;
+        }
+
         Scene scene1("Library", sceneObj[i]); // 活大、圖書館、教室、宿舍
 
         // 印出場景敘述
@@ -139,7 +136,11 @@ void Game::dayContinue() {
         player->update(updateScore); // 依照結果升級
         crush1->corUpdate(player->getAttributes(), actionCoef);
 
+        if (i % 3 == 0 && i != 0) {
+            cout << "\n今天是你與她相識的第" << i * 6 << "天" << endl;
+        }
     }
+
     // 印出結果
     player->print();
 
@@ -153,19 +154,11 @@ void Game::gameEnd() {
     cout << end;
     crush1 -> print();
 }
-void Game::printCrush()
-{
-    crush1->print();
-}
+void Game::printCrush() { crush1->print(); }
 
-void Game::gainItem()
-{
-
-}
-void Game::printItems()
-{
-    for(int i = 0; i < items.size(); i++)
-    {
-        items[i] -> print();
+void Game::gainItem() {}
+void Game::printItems() {
+    for (int i = 0; i < items.size(); i++) {
+        items[i]->print();
     }
 }
