@@ -10,9 +10,10 @@
 using namespace std;
 
 int main() {
-    Game Game;
-    Game.init();
-    Game.dayContinue();
-    Game.gameEnd();
+    Game game;
+    game.init();
+    game.dayContinue();
+    game.gameEnd();
+    game.printItems();
     return 0;
 }

@@ -6,10 +6,25 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <termios.h>
 #include <thread>
+#include <unistd.h>
 using namespace std;
 
-void slowPrint(string statement) {
+// Function to set the terminal to raw mode
+void enableRawMode(termios& orig_termios) {
+    termios raw = orig_termios;
+    raw.c_lflag &= ~(ECHO | ICANON);
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
+}
+
+// Function to restore the original terminal settings
+void disableRawMode(termios& orig_termios) {
+    tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig_termios);
+}
+
+void slowPrint(string statement, termios* orig_termios) {
+
     // Remove the first and last character if they are quotes
     if (statement.front() == '"' && statement.back() == '"') {
         statement = statement.substr(1, statement.size() - 2);
@@ -28,6 +43,20 @@ void slowPrint(string statement) {
         this_thread::sleep_for(
             chrono::milliseconds(1)); // Adjust delay time as needed
         flush(cout);
+
+        if (character == '\n' && orig_termios != nullptr) {
+            cout << "[Press space to continue]" << endl;
+            enableRawMode(*orig_termios);
+            while (true) {
+                char key = getchar();
+                if (key == ' ')
+                    break; // Break the loop if space is pressed
+            }
+            disableRawMode(*orig_termios);
+
+            // Move cursor up and clear line
+            cout << "\033[A\033[2K";
+        }
     }
 
     cout << "\n";
