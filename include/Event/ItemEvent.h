@@ -12,6 +12,9 @@ class ItemEvent : public Event {
     ItemEvent(string dialogs, Item** itemChoice, int itemChoiceCnt);
     // ItemEvent(Json::Value eventObj);
     ~ItemEvent();
+    void printItemChoices();
+    void printDecision(int itemNum);
+    void startEvent(int& itemDecision_cin, int& targetDecision_cin);
 };
 
 #endif

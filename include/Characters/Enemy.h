@@ -7,6 +7,7 @@
 #include "Crush.h"
 #include "Admirer.h"
 #include "Personality.h"
+#include "../Item/Item.h"
 #include <iostream>
 #include <vector>
 #include <string>

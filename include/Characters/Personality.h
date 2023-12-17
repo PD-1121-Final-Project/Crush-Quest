@@ -4,6 +4,9 @@
 #ifndef PERSONALITY_H
 #define PERSONALITY_H
 
+#include <iostream>
+using namespace std;
+
 const double CORRNUM =
     5.0; // the number of attributes used to calculate correlation
 

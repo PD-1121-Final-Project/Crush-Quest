@@ -21,3 +21,7 @@ void Item::usingItemTo(Character&)
 {
     itemNum--;
 }
+void Item::printName()
+{
+    cout << itemName;
+}

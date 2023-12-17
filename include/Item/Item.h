@@ -21,6 +21,7 @@ public:
     void print();
     void gainThisItem();
     void usingItemTo(Character&);
+    void printName();
 };
 
 
