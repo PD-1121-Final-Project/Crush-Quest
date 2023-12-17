@@ -19,13 +19,10 @@
 #include <string>
 #include <thread> // 新增的頭文件
 #include <vector>
-<<<<<<< HEAD
-=======
 #include "../Characters/Enemy.h"
 #include "../Item/Item.h"
 #include "../Scene_Action/Function.h"
 #include "../Scene_Action/Scene.h"
->>>>>>> main using namespace std;
 
 class Game {
   private:
