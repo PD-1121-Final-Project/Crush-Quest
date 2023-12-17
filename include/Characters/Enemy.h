@@ -3,13 +3,13 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
+#include "Admirer.h"
 #include "Character.h"
 #include "Crush.h"
-#include "Admirer.h"
 #include "Personality.h"
 #include <iostream>
-#include <vector>
 #include <string>
+#include <vector>
 using namespace std;
 
 class Enemy : public Character {
@@ -20,7 +20,6 @@ class Enemy : public Character {
   public:
     Enemy(const std::string& name, Personality attributes);
     ~Enemy();
-    Personality getAttributes() const {return attributes;}
     void attack(Crush& crush, Admirer& admirer);
     void update(Personality a, double impressionIncre);
     void printImpre();

@@ -5,10 +5,10 @@ using namespace std;
 
 #include "../include/Characters/Admirer.h"
 #include "../include/Characters/Personality.h"
+#include "../include/Event/ActionEvent.h"
 #include "../include/Scene_Action/Function.h"
 #include "../include/Scene_Action/Scene.h"
 #include "../include/jsonToString.h"
-#include "../include/Event/ActionEvent.h"
 #include <chrono>
 #include <json/json.h>
 #include <termios.h>
@@ -32,18 +32,6 @@ Scene::~Scene() {
         delete this->events[i];
     }
     delete[] this->events;
-}
-
-Personality Scene::getResult(Admirer player, Action a) {
-    Personality currentPersonality = player.getPersonality();
-    // TODO : add the result of the action to the Personality
-    currentPersonality.wealth += 1;
-    currentPersonality.iq += 1;
-    currentPersonality.physical += 1;
-    currentPersonality.talent += 1;
-    currentPersonality.appearance += 1;
-    currentPersonality.luck += 1;
-    return currentPersonality;
 }
 
 void Scene::happen() {
@@ -80,10 +68,10 @@ void Scene::act(Admirer player, Personality& updateScore, double& actionCoef) {
                 if (!(cin >> actionDecision_cin)) {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+                    cout << "似乎打成不合規定的輸入，請再試一次\n\n";
                 } else if (actionDecision_cin < 1 ||
                            actionDecision_cin > actionCnt) {
-                    slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+                    cout << "似乎打成不合規定的輸入，請再試一次\n\n";
                 } else {
                     break;
                 }
@@ -97,16 +85,15 @@ void Scene::act(Admirer player, Personality& updateScore, double& actionCoef) {
 
             cout << "\n";
 
-            // print action response
-            slowPrint(this->events[i]
-                          ->actionChoice[actionDecision_cin]
-                          ->getResponse());
-
             // get action object
             Action chosenAction =
                 *(this->events[i]->actionChoice[actionDecision_cin]);
+
+            // print action response
+            slowPrint(chosenAction.getResponse());
+
             // get result
-            updateScore += this->getResult(player, chosenAction);
+            updateScore += chosenAction.getUpdateScore();
             actionCoef += chosenAction.getCoef();
         }
     }

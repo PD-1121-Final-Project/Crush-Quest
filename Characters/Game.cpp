@@ -94,9 +94,9 @@ void Game::init() {
         if (!(cin >> choice)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+            cout << "似乎打成不合規定的輸入，請再試一次\n\n";
         } else if (choice < 1 || choice > 7) {
-            slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+            cout << "似乎打成不合規定的輸入，請再試一次\n\n";
         } else {
             break;
         }
@@ -153,6 +153,9 @@ void Game::dayContinue() {
     // Get day count
     this->day = sceneObj.size();
 
+    cout << "初始：";
+    player->getPersonality().printRaw();
+    cout << endl;
     // 建立今天的場景
     for (int i = 0; i < day; i++) {
 

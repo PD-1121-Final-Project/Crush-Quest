@@ -1,12 +1,14 @@
 #include "../include/Event/ActionEvent.h"
 using namespace std;
 
-ActionEvent::ActionEvent(string dialogs, Action** actionChoice, int actionChoiceCnt):Event(dialogs) {
+ActionEvent::ActionEvent(string dialogs, Action** actionChoice,
+                         int actionChoiceCnt)
+    : Event(dialogs) {
     this->actionChoice = actionChoice;
     this->actionChoiceCnt = actionChoiceCnt;
 }
 
-ActionEvent::ActionEvent(Json::Value eventObj):Event(eventObj){
+ActionEvent::ActionEvent(Json::Value eventObj) : Event(eventObj) {
     this->dialogs = JsonToString(eventObj["dialogs"]);
     this->actionChoiceCnt = eventObj["actions"].size();
     this->actionChoice = new Action*[this->actionChoiceCnt];
@@ -15,14 +17,15 @@ ActionEvent::ActionEvent(Json::Value eventObj):Event(eventObj){
         Json::Value actionObj = eventObj["actions"][j];
 
         Personality updateScore = {actionObj["updateScore"][0].asDouble(),
-                                    actionObj["updateScore"][1].asDouble(),
-                                    actionObj["updateScore"][2].asDouble(),
-                                    actionObj["updateScore"][3].asDouble(),
-                                    actionObj["updateScore"][4].asDouble()};
+                                   actionObj["updateScore"][1].asDouble(),
+                                   actionObj["updateScore"][2].asDouble(),
+                                   actionObj["updateScore"][3].asDouble(),
+                                   actionObj["updateScore"][4].asDouble(),
+                                   actionObj["updateScore"][5].asDouble()};
         this->actionChoice[j] =
             new Action(JsonToString(actionObj["description"]),
-                        actionObj["actionCoef"].asDouble(), updateScore,
-                        JsonToString(actionObj["response"]));
+                       actionObj["actionCoef"].asDouble(), updateScore,
+                       JsonToString(actionObj["response"]));
     }
 }
 
@@ -43,7 +46,7 @@ void ActionEvent::printActionChoices() {
     if (actionChoiceCnt > 0) {
         cout << endl;
         cout << ">>"
-                << "\n";
+             << "\n";
         cout << endl;
 
         for (int i = 0; i < actionChoiceCnt; i++) {
