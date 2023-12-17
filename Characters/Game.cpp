@@ -7,18 +7,18 @@
 #include "../include/Scene_Action/Function.h"
 #include <chrono> // 新增的頭文件
 #include <iostream>
+#include <random>
 #include <stdexcept>
 #include <string>
 #include <thread> // 新增的頭文件
 #include <vector>
-#include <random>
 
 using namespace std;
 Game::Game() : player(nullptr), day(0) {
     // wealth iq; physical; talent appearance; luck
     Personality attribute;
-    //以下為隨機挑一個小美的理想型
-    
+    // 以下為隨機挑一個小美的理想型
+
     random_device rd;
     mt19937 gen(rd());
 
@@ -183,14 +183,30 @@ void Game::dayContinue() {
         crush1->corUpdate(player->getAttributes(), actionCoef);
 
         // 情敵攻擊事件
-        if (i > 5){
-            enemy->attack(*crush1, *player, this->getNonZeroItems(), this->getNonZeroItemCnt());
+        if (i > 5) {
+            enemy->attack(*crush1, *player, this->getNonZeroItems(),
+                          this->getNonZeroItemCnt());
         }
 
         // 印出結果
         cout << "\n\n";
         cout << "你目前的能力值是：\n";
         player->getPersonality().print();
+
+        cout << "[Press space to continue]" << endl;
+        termios orig_termios;
+        tcgetattr(STDIN_FILENO, &orig_termios);
+
+        enableRawMode(orig_termios);
+        while (true) {
+            char key = getchar();
+            if (key == ' ')
+                break; // Break the loop if space is pressed
+        }
+        disableRawMode(orig_termios);
+
+        // Move cursor up and clear line
+        cout << "\033[A\033[2K";
 
         printDashedLine();
 
@@ -206,11 +222,10 @@ void Game::dayContinue() {
         uniform_int_distribution<int> distribution(0, 5);
         // 生成隨機數
         int randomNumber = distribution(gen);
-        if(randomNumber <= player ->getPersonality().luck)
-        {
+        if (randomNumber <= player->getPersonality().luck) {
             uniform_int_distribution<int> distribution(0, 6);
             int randomNumber = distribution(gen);
-            items[randomNumber] -> gainThisItem();
+            items[randomNumber]->gainThisItem();
         }
     }
 
@@ -235,7 +250,7 @@ void Game::gameEnd() {
                     \n暗戀對象：嗯，我們昨天已經約了一起吃飯，感覺好奇妙。\n你：（嘴角勉強笑著）那太好了，我祝福你們。\n暗戀對象：謝謝，其實我還以為你會對我有點失望呢。\
                     \n你：（苦笑）沒有啦，我只是覺得自己有點太天真了，希望你和他會很幸福。\n暗戀對象：謝謝你的祝福，希望我們還是可以做朋友。\n你：當然，沒問題。祝你們有一段美好的感情。");
     }
-    crush1 -> print();
+    crush1->print();
 }
 void Game::printCrush() { crush1->print(); }
 
