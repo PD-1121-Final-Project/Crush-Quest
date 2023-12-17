@@ -56,9 +56,9 @@ void Game::init() {
         if (!(cin >> choice)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+            cout << "似乎打成不合規定的輸入，請再試一次\n\n";
         } else if (choice < 1 || choice > 7) {
-            slowPrint("似乎打成不合規定的輸入，請再試一次\n\n");
+            cout "似乎打成不合規定的輸入，請再試一次\n\n";
         } else {
             break;
         }
