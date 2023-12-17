@@ -101,6 +101,7 @@ void Game::init()
     cin >> name;
 
     player = new Admirer(name, attribute);
+    crush1 -> print();
 
 }
 void Game::dayContinue() {
@@ -137,6 +138,7 @@ void Game::dayContinue() {
 
         player->update(updateScore); // 依照結果升級
         crush1->corUpdate(player->getAttributes(), actionCoef);
+
     }
     // 印出結果
     player->print();
@@ -149,6 +151,7 @@ void Game::gameEnd() {
     slowPrint("你認為時機成熟了，決定放手一博，向暗戀對象告白。");
     double end = player->getPersonality().getCorr(crush1->getPersonality());
     cout << end;
+    crush1 -> print();
 }
 void Game::printCrush()
 {

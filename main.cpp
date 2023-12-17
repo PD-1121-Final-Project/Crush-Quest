@@ -14,5 +14,6 @@ int main() {
     game.init();
     game.dayContinue();
     game.gameEnd();
+    
     return 0;
 }

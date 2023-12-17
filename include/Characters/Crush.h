@@ -23,6 +23,7 @@ class Crush : public Character {
     void print();
     void update(Personality newAttributes, double impressionIncre = 0);
     void corUpdate(Personality admirerAtt, double actionCoef);
+    void printImpre();
 };
 
 #endif // CRUSH_H

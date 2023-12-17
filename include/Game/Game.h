@@ -43,6 +43,8 @@ public :
     void printCrush();
     void gainItem();
     void printItems();
+
+friend class Event; //取得遊戲中的道具
 };
 
 #endif // GAME_H

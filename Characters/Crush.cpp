@@ -23,3 +23,8 @@ void Crush::corUpdate(Personality admirerAtt, double actionCoef)
       double personalityCorr = this->attributes.getCorr(admirerAtt);
       impression += mapLuckToRandomRatio(actionCoef + personalityCorr);
     }
+
+void Crush::printImpre()
+{
+    cout << this ->impression;
+}
