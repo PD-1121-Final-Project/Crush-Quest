@@ -3,6 +3,8 @@
 #include "../include/Event/ItemEvent.h"
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -13,6 +15,7 @@ Enemy::~Enemy() {}
 
 void Enemy::attack(Crush& crush, Admirer& admirer, vector<Item*> items, int itemCnt) {
     // initialize item event
+    srand(time(NULL));
     int randomIdx = rand() % attackEvents.size();
     ItemEvent itemEvent = ItemEvent(attackEvents[randomIdx], items, itemCnt);
 

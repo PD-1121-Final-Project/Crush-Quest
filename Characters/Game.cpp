@@ -17,7 +17,7 @@ using namespace std;
 Game::Game() : player(nullptr), day(0) {
     // wealth iq; physical; talent appearance; luck
     Personality attribute;
-    // 以下為隨機挑一個小美的理想型
+    // 以下為隨機挑一個暗戀對象的理想型
 
     random_device rd;
     mt19937 gen(rd());
@@ -190,74 +190,73 @@ void Game::dayContinue() {
         crush1->corUpdate(player->getAttributes(), actionCoef);
 
         // 情敵攻擊事件
-        if (i > 5) {
+        if (i > 6) {
             enemy->attack(*crush1, *player, this->getNonZeroItems(),
                           this->getNonZeroItemCnt());
         }
 
-        // 印出結果
-        cout << "\n\n";
-        cout << "你目前的能力值是：\n";
-        player->getPersonality().print();
-
-        cout << "[Press space to continue]" << endl;
-        termios orig_termios;
-        tcgetattr(STDIN_FILENO, &orig_termios);
-
-        enableRawMode(orig_termios);
-        while (true) {
-            char key = getchar();
-            if (key == ' ')
-                break; // Break the loop if space is pressed
-        }
-        disableRawMode(orig_termios);
-
-        // Move cursor up and clear line
-        cout << "\033[A\033[2K";
-
         printDashedLine();
+        if (i < day-1)
+        {
+            // 印出結果
+            cout << "\n\n";
+            cout << "你目前的能力值是：\n";
+            player->getPersonality().print();
 
-        if (i % 3 == 0 && i != 0) {
-            cout << "\n今天是你與她相識的第" << i * 6 << "天" << endl;
-        }
+            cout << "[Press space to continue]" << endl;
+            termios orig_termios;
+            tcgetattr(STDIN_FILENO, &orig_termios);
 
+            enableRawMode(orig_termios);
+            while (true) {
+                char key = getchar();
+                if (key == ' ')
+                    break; // Break the loop if space is pressed
+            }
+            disableRawMode(orig_termios);
 
-        //以下為獲得item實作
-        random_device rd;
-        mt19937 gen(rd());
-        // 定義一個均勻分佈，範圍為 1 到 5
-        uniform_int_distribution<int> distribution(0, 5);
-        // 生成隨機數
-        int randomNumber = distribution(gen);
-        if (randomNumber <= player->getPersonality().luck) {
-            uniform_int_distribution<int> distribution(0, 6);
+            // Move cursor up and clear line
+            cout << "\033[A\033[2K";
+
+            //以下為獲得item實作
+            random_device rd;
+            mt19937 gen(rd());
+            // 定義一個均勻分佈，範圍為 1 到 5
+            uniform_int_distribution<int> distribution(0, 5);
+            // 生成隨機數
             int randomNumber = distribution(gen);
-            items[randomNumber]->gainThisItem();
+            if (randomNumber <= player->getPersonality().luck) {
+                uniform_int_distribution<int> distribution(0, 6);
+                int randomNumber = distribution(gen);
+                items[randomNumber]->gainThisItem();
+            }
         }
     }
 
     // 印出結果
-    player->print();
+    cout << "\n\n";
+    cout << "你的最終能力值是：\n";
+    player->getPersonality().print();
 
     // 關閉檔案
     scene_json.close();
 }
 void Game::nextScene() {}
 void Game::gameEnd() {
-    slowPrint("你認為時機成熟了，決定放手一博，向暗戀對象告白。\n\n\n---你將小美約到醉月湖畔---\n\n\n你：小美，我其實...\n暗戀你很久了。\n你:..願意和我交往嗎？\n小美：...\n這..這麼突然");
+    slowPrint("你認為時機成熟了，決定放手一博，向暗戀對象告白。\n\n你將暗戀對象約到醉月湖畔---");
     if(enemy->getImpression() <= crush1->getImpre())
     {
-        slowPrint("其實我也喜歡你。遊戲結束");
+        slowPrint("暗戀對象：其實我也喜歡你，那今天就是我們交往的第一天！");
     }
     else
     {
-        slowPrint("你：嗨，我一直都想告訴你一個事情，我對你有一點特別的感覺，我想我們可以一起試試看嗎？\n\
-                    暗戀對象：哇，真的嗎？其實我也一直有種感覺，但是... \n你：但是什麼呢？\n暗戀對象：其實最近我發現，我對另外一個人有點心動。\
-                    \n你：（心情沉重）哦，是誰呢？\n暗戀對象：是那個新轉學生，他真的好有趣，我們聊得很開心。\n你：（心碎）哦，是這樣啊。那你們是不是已經...\
-                    \n暗戀對象：嗯，我們昨天已經約了一起吃飯，感覺好奇妙。\n你：（嘴角勉強笑著）那太好了，我祝福你們。\n暗戀對象：謝謝，其實我還以為你會對我有點失望呢。\
-                    \n你：（苦笑）沒有啦，我只是覺得自己有點太天真了，希望你和他會很幸福。\n暗戀對象：謝謝你的祝福，希望我們還是可以做朋友。\n你：當然，沒問題。祝你們有一段美好的感情。");
+        slowPrint("你：嗨，我一直都想告訴你一個事情，我對你有一點特別的感覺，我想我們可以一起試試看嗎？\n暗戀對象：哇，真的嗎？其實我也一直有種感覺，但是...\n你：但是什麼呢？\n暗戀對象：其實最近我發現，我對另外一個人有點心動。\
+                \n你：（心情沉重）哦，是誰呢？\n暗戀對象：是那個社團同學，他真的好有趣，我們聊得很開心。\n你：（心碎）哦，是這樣啊。那你們是不是已經...\
+                \n暗戀對象：嗯，我們昨天已經約了一起吃飯，感覺好奇妙。\n你：（嘴角勉強笑著）那太好了，我祝福你們。\n暗戀對象：謝謝，其實我還以為你會對我有點失望呢。\
+                \n你：（苦笑）沒有啦，我只是覺得自己有點太天真了，希望你和他會很幸福。\n暗戀對象：謝謝你的祝福，希望我們還是可以做朋友。\n你：當然。祝你們有一段美好的感情。");
     }
-    crush1->print();
+    // crush1->print();
+    cout << "\n\n遊戲結束，謝謝您的遊玩！\n";
 }
 void Game::printCrush() { crush1->print(); }
 
